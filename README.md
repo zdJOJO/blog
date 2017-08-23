@@ -11,7 +11,7 @@ a simple demon of react-router4
 
 `npm start`
 
-`# open http://localhost:3002/`
+`# open http://localhost:3000/`
 
 `# build`
 

@@ -11,17 +11,19 @@ const urls = [
   {id: "1003", name: "小刚"}
 ];
 
-const Page1 = ({match}) => (
+const Page1 = () => (
   <div className="testColor">
     <h3>这个是Page1</h3>
     <ul>
       {
         urls.map( item => (
-          <li key={item.id}><Link to={`${match.url}/user/${item.id}`}>{item.name}</Link></li>
+          <li key={item.id}>
+            <Link to={`/page1/user/${item.id}`}>{item.name}</Link>
+          </li>
         ))
       }
     </ul>
-    <Route path={`${match.url}/user/:userId`} component={User}/>
+    <Route path="/page1/user/:userId" component={User} />
   </div>
 );
 

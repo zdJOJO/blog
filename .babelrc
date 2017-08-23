@@ -1,0 +1,12 @@
+// 在 webpack.dev.js 中已经定义的话， 此文件可不需要Y
+
+{
+	"presets": [
+		"es2015",
+		"react",
+		"stage-1"
+  ],
+  "plugins": [
+		"transform-decorators-legacy"
+  ]
+}

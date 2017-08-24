@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
 
 import User from "./user";
-
 
 const urls = [
   {id: "1000", name: "李雷"},
@@ -11,20 +10,22 @@ const urls = [
   {id: "1003", name: "小刚"}
 ];
 
-const Page1 = () => (
+const Page1 = ({match}) => (
   <div className="testColor">
     <h3>这个是Page1</h3>
     <ul>
       {
         urls.map( item => (
           <li key={item.id}>
-            <Link to={`/page1/user/${item.id}`}>{item.name}</Link>
+            <Link to={`${match.url}/user/${item.id}`}>{item.name}</Link>
           </li>
         ))
       }
     </ul>
+    <Route path={`${match.url}`} exact render={()=>(<h5>请选择一个人名</h5>)}/>
     <Route path="/page1/user/:userId" component={User} />
   </div>
 );
 
-export default Page1;
+export default withRouter(Page1);
+

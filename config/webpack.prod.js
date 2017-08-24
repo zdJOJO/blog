@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../static/pages'),
     publicPath: '/static/pages',  // publicPath：这个东西就是我们的服务器端的目录结构，会按这个目录加载js，css
-    filename: '[name].js',
+    filename: '[name].[hash:8].bundle.js',
     chunkFilename: '[name].[chunkhash:5].chunk.js'  // 按需加载
   },
 

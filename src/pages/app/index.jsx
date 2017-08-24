@@ -22,9 +22,9 @@ const Header = () => (
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={HelloWorld}/>
-      <Route path='/page1' component={Page1}/>
-      <Route path='/page2' component={Page2}/>
+      <Route exact path="/" component={HelloWorld}/>
+      <Route path="/page1" component={Page1}/>
+      <Route path="/page2" component={Page2}/>
     </Switch>
   </main>
 );

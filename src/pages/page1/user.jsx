@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "./user.less";
 
 const User = ({match}) => {
@@ -9,4 +10,5 @@ const User = ({match}) => {
   );
 };
 
-export default User;
+//export default User;
+export default withRouter(User);

@@ -1,25 +1,25 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 module.exports = {
 
   entry: {
-    app: './src/index',
-    common_react: ['react', 'react-dom', 'react-router', 'mobx-react', 'mobx']
+    app: "./src/index",
+    common_react: ["react", "react-dom", "react-router", "mobx-react", "mobx"]
   },
 
   output: {
-    path: path.resolve(__dirname, '../static/pages'),
-    publicPath: '/static/pages',  // publicPath：这个东西就是我们的服务器端的目录结构，会按这个目录加载js，css
-    filename: '[name].[hash:8].bundle.js',
-    chunkFilename: '[name].[chunkhash:5].chunk.js'  // 按需加载
+    path: path.resolve(__dirname, "../static/pages"),
+    publicPath: "/static/pages",  // publicPath：这个东西就是我们的服务器端的目录结构，会按这个目录加载js，css
+    filename: "[name].[hash:8].bundle.js",
+    chunkFilename: "[name].[chunkhash:5].chunk.js"  // 按需加载
   },
 
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"]
   },
 
   module: {
@@ -29,11 +29,11 @@ module.exports = {
             use: {
               loader: "babel-loader",
               options: {
-                presets: ['react', 'es2015', 'stage-1'],
-                plugins: ['transform-decorators-legacy']
+                presets: ["react", "es2015", "stage-1"],
+                plugins: ["transform-decorators-legacy"]
               }
             },
-            include: path.resolve(__dirname, '../src'),  //需要绝对路径
+            include: path.resolve(__dirname, "../src"),  //需要绝对路径
             exclude: /node_modules/   // 告诉Babel不要处理node_modules文件夹中的文件
         },
         {
@@ -46,8 +46,8 @@ module.exports = {
         {
           test: /\.less$/,
           use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'less-loader']
+            fallback: "style-loader",
+            use: ["css-loader", "less-loader"]
           })
         },
         {
@@ -60,15 +60,15 @@ module.exports = {
   plugins: [
 
     new HtmlWebpackPlugin({
-      title: '我的APP',
+      title: "我的APP",
     }),
 
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin("style.css"),
     
     new webpack.NoEmitOnErrorsPlugin(),
 
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common_react',
+      name: "common_react",
       minChunks: Infinity
     }),
 
@@ -77,7 +77,7 @@ module.exports = {
         compress: {
             warnings: false  //忽略警告,要不然会有一大堆的黄色字体出现
         },
-        except: ['$super', '$', 'exports', 'require']    //排除关键字
+        except: ["$super", "$", "exports", "require"]    //排除关键字
     })
   ]
 

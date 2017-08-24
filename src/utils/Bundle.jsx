@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 class Bundle extends React.Component {
   state = {
-    // short for "module" but that's a keyword in js, so "mod"
+    // short for "module" but that"s a keyword in js, so "mod"
     mod: null
   }
 

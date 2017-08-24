@@ -1,67 +1,67 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
 let port = 3000; 
 
 module.exports = {
 
-  devtool: 'eval',
+  devtool: "eval",
 
   entry: [
     `webpack-dev-server/client?http://localhost:${port}`,
-    'webpack/hot/only-dev-server',
-    './src/index.jsx'
+    "webpack/hot/only-dev-server",
+    "./src/index.jsx"
   ],
 
   output: {
-    path: path.resolve(__dirname, '../static/pages'),
-    publicPath: '/static/pages/',
-    filename: 'bundle.js',
-    chunkFilename: '[name].[chunkhash:5].chunk.js'  // 按需加载
+    path: path.resolve(__dirname, "../static/pages"),
+    publicPath: "/static/pages/",
+    filename: "bundle.js",
+    chunkFilename: "[name].[chunkhash:5].chunk.js"  // 按需加载
   },
 
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"]
   },
 
   module: {
     rules: [
-        {
-            test: /\.js[x]?$/,  // ==> 正则匹配 .js .jsx
-            use: {
-              loader: "babel-loader",
-              options: {
-                presets: ['react', 'es2015', 'stage-1'],
-                plugins: ['transform-decorators-legacy']
-              }
-            },
-            include: path.resolve(__dirname, '../src'),  //需要绝对路径
-            exclude: /node_modules/   // 告诉Babel不要处理node_modules文件夹中的文件
+      {
+        test: /\.js[x]?$/,  // ==> 正则匹配 .js .jsx
+        use: {
+          loader: "babel-loader",
+          // options: {
+          //   presets: ["react", "es2015", "stage-1"],
+          //   plugins: ["transform-decorators-legacy"]
+          // }
         },
-        {
-          test: /\.js[x]?$/,  // ==> 正则匹配 .js .jsx
-          use: "eslint-loader",
-          exclude: /node_modules/
-        },
-        {
-            test: /\.css$/,
-            use: [
-              "style-loader",
-              "css-loader"
-            ]
-        },
-        {
-            test: /\.less$/,
-            use: [
-              "style-loader",
-              "css-loader",
-              "less-loader"
-            ]
-        },
-        {
-            test: /\.(png|jpg)$/,
-            use: "url-loader?limit=8192"
-        }
+        include: path.resolve(__dirname, "../src"),  //需要绝对路径
+        exclude: /node_modules/   // 告诉Babel不要处理node_modules文件夹中的文件
+      },
+      {
+        test: /\.js[x]?$/,  // ==> 正则匹配 .js .jsx
+        use: "eslint-loader",
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader"
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "less-loader"
+        ]
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: "url-loader?limit=8192"
+      }
     ]
   },
 

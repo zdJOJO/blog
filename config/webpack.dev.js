@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.js[x]?$/,  // ==> 正则匹配 .js .jsx
         use: {
-          loader: "babel-loader",
+          loader: "babel-loader"
           // options: {
           //   presets: ["react", "es2015", "stage-1"],
           //   plugins: ["transform-decorators-legacy"]

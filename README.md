@@ -8,18 +8,24 @@ a simple demon of react-router4
 
 `npm install`
 
-`# dev `
+`# 开发环境 `
 
 `npm start`
 
 `# open http://localhost:3000/`
 
-`# build`
+`# 前端打包`
 
 `npm run build`
 
+`#  启动服务器 访问8080`
+
+`npm run server`
+
+`open http://localhost:8080/`
+
 # 一些问题
-1. 使用v4按需加载，若在某个组件中import A , A 组件是否也要按需加载？
+1. 使用v4按需加载，若在某个组件中import A , A 组件是否也要按需加载？  已经解决。
 
 2. V4中 react-router-dom 和 react-router 有什么区别 ？
 

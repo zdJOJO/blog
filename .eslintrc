@@ -12,7 +12,7 @@
   "rules": {
     "indent": ["error", 2],
     "eqeqeq": ["error", "always"],
-    "quotes": ["error", "double"],
+    "quotes": ["warn", "double"],
     "strict": ["error", "never"],
     "semi": ["error", "always", { "omitLastInOneLineBlock": true}],
     "react/jsx-uses-react": 2,

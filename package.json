@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --inline --config config/webpack.dev.js",
-    "build": "webpack --color --progress --config config/webpack.prod.js",
+    "build": "cross-env NODE_ENV=production webpack --color --progress --config config/webpack.prod.js",
     "server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "react",
     "reactjs",
-    "mobx"
+    "mobx",
+    "express"
   ],
   "author": "zhangding",
   "license": "ISC",

@@ -72,9 +72,8 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      title: "我的APP",
-      filename: path.resolve(__dirname, "../static/index.html")
-      //template: "my-index.ejs"
+      filename: path.resolve(__dirname, "../static/index.html"),
+      template: "./src/html-tpl/tpl.html"
     }),
 
     new ExtractTextPlugin("style.css"),

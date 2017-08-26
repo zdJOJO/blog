@@ -82,7 +82,10 @@ module.exports = {
     host: "127.0.0.1",
     port: port,
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      "/school/*": "http://127.0.0.1:8080"
+    }
   }
 
 };

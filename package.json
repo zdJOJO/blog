@@ -13,7 +13,8 @@
     "react",
     "reactjs",
     "mobx",
-    "express"
+    "express",
+    "mongodb"
   ],
   "author": "zhangding",
   "license": "ISC",
@@ -46,6 +47,8 @@
   "dependencies": {
     "mobx": "^3.2.2",
     "mobx-react": "^4.2.2",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.8",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router": "^4.1.2",

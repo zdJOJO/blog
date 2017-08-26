@@ -2,7 +2,7 @@
   express 的 routes
 */
 
-const express = require("express");
+const studentRoute = require("./student"); 
 
 module.exports = function (app){
 
@@ -10,9 +10,7 @@ module.exports = function (app){
     res.send("Hellow World !!");
   });
 
-  app.get("/student", (req, res)=>{
-    res.send("student !!");
-  });
+  studentRoute(app);
 
   app.get("/teacher", (req, res)=>{
     res.send("teacher !!");

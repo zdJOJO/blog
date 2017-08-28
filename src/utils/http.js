@@ -11,7 +11,7 @@ const myFetch = (url, methodType="get", obj={}) => {
         credentials: "include"
       };
 
-    fetch(url, header=null)
+    fetch(url, header)
       .then( res =>{
         if(res.ok && res.status===200){
           return res.json();

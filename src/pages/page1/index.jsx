@@ -3,6 +3,7 @@ import { Link, Route, withRouter } from "react-router-dom";
 import {observer} from "mobx-react";
 
 import User from "bundle-loader?lazy&name=user!./user";
+import AddModal from "../../components/addModal";
 import { createComponent } from "../../routes/routes";
 import myPage1Store from "./page1Store";
 
@@ -13,12 +14,20 @@ class Page1 extends Component{
   componentDidMount(){
     if(myPage1Store.studentList.length === 0)
       myPage1Store.getStudentList();
+    myPage1Store.inital();
   }
 
   render(){
     return(
       <div className="testColor">
-        <h3>这个是Page1</h3>
+        <h3>添加学生: </h3>
+        <AddModal 
+          columns={myPage1Store.studentInfo}
+          addMap={myPage1Store.studentInfoMap}
+          handleChange={myPage1Store.handleChange}
+          handleSubmit={myPage1Store.handleSubmit}
+        />
+        <h3>学生列表:</h3>
         <ul>
           {
             myPage1Store.studentList.map( item => (

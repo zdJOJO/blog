@@ -2,7 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css"
+});
 
 module.exports = {
 
@@ -44,11 +46,15 @@ module.exports = {
         })
       },
       {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: ["css-loader", "less-loader"]
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: ["css-loader", "sass-loader"],
+          fallback: "style-loader"
         })
+      },
+      {
+        test: /\.less$/,
+        use: ["css-loader", "less-loader"]
       },
       {
         test: /\.(png|jpg)$/,
@@ -76,6 +82,7 @@ module.exports = {
       template: "./src/html-tpl/tpl.html"
     }),
 
+    extractSass,
     new ExtractTextPlugin("style.css"),
     
     new webpack.NoEmitOnErrorsPlugin(),

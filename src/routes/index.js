@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 
+import Navigation from "react-toolbox/lib/navigation";
+import LinkButton from "../components/linkButton";
+import MyHeaderBar from "../components/myHeaderBar";
+
 import { createComponent } from "./routes";
 import HelloWorld from "bundle-loader?lazy&name=hello!../pages/helloWorld";
 import Page1 from "bundle-loader?lazy&name=page1!../pages/page1";
 import Page2 from "bundle-loader?lazy&name=page2!../pages/page2";
 
+
 const Header = () => (
-  <header>
-    <nav>
-      <Link to="/">home</Link>
-      <Link to="/page1">page1</Link>
-      <Link to="/page2">page2</Link>
-    </nav>
-  </header>
+  <MyHeaderBar title='React Toolbox' leftIcon='menu'>
+    <Navigation type='horizontal'>
+      <LinkButton href="/" icon='add' label='Page1' flat primary/>
+      <LinkButton href="/page1" icon='add' label='Page1' flat primary/>
+      <LinkButton href="/page2" icon='inbox' label='Page2' flat primary/>
+    </Navigation>
+  </MyHeaderBar>
 );
 
 const Main = () => (

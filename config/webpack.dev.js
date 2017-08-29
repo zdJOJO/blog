@@ -5,7 +5,7 @@ let port = 3000;
 
 module.exports = {
 
-  devtool: "eval",
+  devtool: "eval",  // source-map
 
   entry: [
     `webpack-dev-server/client?http://localhost:${port}`,

@@ -1,10 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-//const ExtractTextPlugin = require("extract-text-webpack-plugin");
-// const extractSass = new ExtractTextPlugin({
-//   filename: "[name].[contenthash].css"
-// });
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 
@@ -40,50 +37,41 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true, // default is false
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[name]--[local]--[hash:base64:8]"
-            }
-          },
-          "postcss-loader"
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                modules: true, // default is false
+                sourceMap: true,
+                importLoaders: 1,
+                localIdentName: "[name]--[local]--[hash:base64:8]"
+              }
+            },
+            "postcss-loader"
+          ]
+        })
       },
-      // {
-      //   test: /\.css$/,
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: "style-loader",
-      //     use: "css-loader"
-      //   })
-      // },
       {
         test: /\.scss$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true, // default is false
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[name]--[local]--[hash:base64:8]"
-            }
-          },
-          "sass-loader"
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                modules: true, // default is false
+                sourceMap: true,
+                importLoaders: 2,
+                localIdentName: "[name]--[local]--[hash:base64:8]"
+              }
+            },
+            "postcss-loader",
+            "sass-loader"
+          ]
+        })
       },
-      // {
-      //   test: /\.scss$/,
-      //   use: extractSass.extract({
-      //     use: ["css-loader", "sass-loader"],
-      //     fallback: "style-loader"
-      //   })
-      // },
       {
         test: /\.(png|jpg)$/,
         use: "url-loader?limit=8192"
@@ -110,8 +98,11 @@ module.exports = {
       template: "./src/html-tpl/tpl.html"
     }),
 
-    // extractSass,
-    // new ExtractTextPlugin("style.css"),
+    new ExtractTextPlugin({ 
+      filename: "[name].[contenthash].css", 
+      disable: false, 
+      allChunks: true 
+    }),
     
     new webpack.NoEmitOnErrorsPlugin(),
 

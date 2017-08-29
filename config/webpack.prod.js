@@ -1,10 +1,10 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const extractSass = new ExtractTextPlugin({
-  filename: "[name].[contenthash].css"
-});
+//const ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const extractSass = new ExtractTextPlugin({
+//   filename: "[name].[contenthash].css"
+// });
 
 module.exports = {
 
@@ -29,33 +29,61 @@ module.exports = {
       {
         test: /\.js[x]?$/,  // ==> 正则匹配 .js .jsx
         use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["react", "es2015", "stage-1"],
-            plugins: ["transform-decorators-legacy"]
-          }
+          loader: "babel-loader"
+          // options: {
+          //   presets: ["react", "es2015", "stage-1"],
+          //   plugins: ["transform-decorators-legacy"]
+          // }
         },
         include: path.resolve(__dirname, "../src"),  //需要绝对路径
         exclude: /node_modules/   // 告诉Babel不要处理node_modules文件夹中的文件
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true, // default is false
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: "[name]--[local]--[hash:base64:8]"
+            }
+          },
+          "postcss-loader"
+        ]
       },
+      // {
+      //   test: /\.css$/,
+      //   use: ExtractTextPlugin.extract({
+      //     fallback: "style-loader",
+      //     use: "css-loader"
+      //   })
+      // },
       {
         test: /\.scss$/,
-        use: extractSass.extract({
-          use: ["css-loader", "sass-loader"],
-          fallback: "style-loader"
-        })
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true, // default is false
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: "[name]--[local]--[hash:base64:8]"
+            }
+          },
+          "sass-loader"
+        ]
       },
-      {
-        test: /\.less$/,
-        use: ["css-loader", "less-loader"]
-      },
+      // {
+      //   test: /\.scss$/,
+      //   use: extractSass.extract({
+      //     use: ["css-loader", "sass-loader"],
+      //     fallback: "style-loader"
+      //   })
+      // },
       {
         test: /\.(png|jpg)$/,
         use: "url-loader?limit=8192"
@@ -82,8 +110,8 @@ module.exports = {
       template: "./src/html-tpl/tpl.html"
     }),
 
-    extractSass,
-    new ExtractTextPlugin("style.css"),
+    // extractSass,
+    // new ExtractTextPlugin("style.css"),
     
     new webpack.NoEmitOnErrorsPlugin(),
 

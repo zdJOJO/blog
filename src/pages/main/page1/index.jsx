@@ -3,8 +3,8 @@ import { Link, Route, withRouter } from "react-router-dom";
 import {observer} from "mobx-react";
 
 import User from "bundle-loader?lazy&name=user!./user";
-import AddModal from "../../components/addModal";
-import { createComponent } from "../../routes/routes";
+import AddModal from "../../../components/addModal";
+import { createComponent } from "../../../routes/routes";
 import myPage1Store from "./page1Store";
 
 

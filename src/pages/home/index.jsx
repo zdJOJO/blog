@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import {observer} from "mobx-react";
 
+import FontIcon from "react-toolbox/lib/font_icon";
+import LinkButton from "../../components/linkButton";
+
 import HomeStore from "./homeStore";
 import homeStyle from "./home.scss";
 
@@ -14,16 +17,26 @@ class Home extends Component{
   }
 
   render(){
-    const style = {
-      backgroundImage: `url(${this.myHomeStore.imgList[this.myHomeStore.imgIndex]})`
-    };
-
     return(                 
       <div className={homeStyle.home}>
-        <div 
-          className={ homeStyle.imgList } 
-          style={style} 
-        />
+        {
+          this.myHomeStore.imgList.map((ele, index)=>{
+            const style = {
+              backgroundImage: `url(${ele})`,
+              opacity: index===this.myHomeStore.imgIndex ? 1 : 0
+            };
+            return(
+              <div
+                key={index} 
+                className={ homeStyle.imgList } 
+                style={style} 
+              />
+            );
+          })
+        }
+        <LinkButton className={homeStyle.enterBtn} href="/main/page1" flat>
+          <FontIcon className={homeStyle.icon} value="forward"/> 进入博客
+        </LinkButton>
       </div>  		
     );
   }

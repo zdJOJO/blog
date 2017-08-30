@@ -16,7 +16,7 @@ class HomeStore {
     this.timer = setInterval(()=>{
       this.num ++ ;
       this.imgIndex  = this.num % 3;
-    },10000);
+    },8000);
   }
 }
 

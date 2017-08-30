@@ -1,6 +1,9 @@
 import React from "react";
 import {observer} from "mobx-react";
 
+import Button from "react-toolbox/lib/button";
+import theme from "./css/button.scss";
+
 const AddModal = observer((props) => {
   return(
     <form 
@@ -15,7 +18,7 @@ const AddModal = observer((props) => {
             return(
               <li key={index}>
                 <span>{ele.infoStr}: </span>
-                <input 
+                <input
                   type={ele.type} 
                   value={props.addMap.get(ele.infoStr) || ""}
                   onChange={(event)=>{props.handleChange(ele.infoStr, event)}}
@@ -26,7 +29,7 @@ const AddModal = observer((props) => {
           })
         }
       </ul>
-      <button type="submit">确定</button>
+      <Button type="submit" label="确定" flat></Button>
     </form>
   );
 });

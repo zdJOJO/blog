@@ -1,5 +1,5 @@
 import {observable, action} from "mobx";
-import myFetch from "../../utils/http";
+import myFetch from "../../../utils/http";
 
 class Page1Store {
  

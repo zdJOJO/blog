@@ -1,5 +1,4 @@
 import React from "react";
-// import Button from "react-toolbox/lib/button/Button";
 import Button from "react-toolbox/lib/button";
 import {Link} from "react-router-dom";
 import theme from "./css/button.scss";

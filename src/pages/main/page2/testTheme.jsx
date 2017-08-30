@@ -1,8 +1,5 @@
 
 import React from "react";
-// import Card from "react-toolbox/lib/card/Card";
-// import CardTitle from "react-toolbox/lib/card/CardTitle";
-// import CardText from "react-toolbox/lib/card/CardText";
 import {Card, CardTitle, CardText} from "react-toolbox/lib/card";
 import theme from "./theme.scss";
 

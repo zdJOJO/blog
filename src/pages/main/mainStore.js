@@ -1,7 +1,7 @@
 import {observable, action} from "mobx";
 import myFetch from "../../utils/http";
 
-class AppStore {
+class MainStore {
 
   @observable focus = false;
   @observable linkIndex = 0;
@@ -12,5 +12,5 @@ class AppStore {
   }
 }
 
-const myAppStore = new AppStore();
-export default myAppStore;
+const myMainStore = new MainStore();
+export default myMainStore;

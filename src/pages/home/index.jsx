@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {observer} from "mobx-react";
 
 import FontIcon from "react-toolbox/lib/font_icon";
+import Button from "react-toolbox/lib/button";
 import LinkButton from "../../components/linkButton";
 
 import HomeStore from "./homeStore";
@@ -34,6 +35,7 @@ class Home extends Component{
             );
           })
         }
+        <Button icon="person" primary className={homeStyle.primary} />
         <LinkButton className={homeStyle.enterBtn} href="/main/page1" flat>
           <FontIcon className={homeStyle.icon} value="forward"/> 进入博客
         </LinkButton>

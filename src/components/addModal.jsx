@@ -4,7 +4,7 @@ import {observer} from "mobx-react";
 import Button from "react-toolbox/lib/button";
 import theme from "./css/button.scss";
 
-const AddModal = observer((props) => {
+const AddModal = (props) => {
   return(
     <form 
       onSubmit={(event)=>{
@@ -32,6 +32,6 @@ const AddModal = observer((props) => {
       <Button type="submit" label="确定" flat></Button>
     </form>
   );
-});
+};
 
-export default AddModal;
+export default observer(AddModal);

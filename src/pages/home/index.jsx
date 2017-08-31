@@ -16,7 +16,7 @@ class Home extends Component{
   myHomeStore = new HomeStore();
 
   componentDidMount(){
-    this.myHomeStore.changeImg();
+    //this.myHomeStore.changeImg();
   }
 
   handleClose=()=>{

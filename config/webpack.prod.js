@@ -41,15 +41,8 @@ module.exports = {
           fallback: "style-loader",
           use: [
             {
-              loader: "css-loader",
-              options: {
-                modules: true, // default is false
-                sourceMap: true,
-                importLoaders: 1,
-                localIdentName: "[name]--[local]--[hash:base64:8]"
-              }
-            },
-            "postcss-loader"
+              loader: "css-loader"
+            }
           ]
         })
       },
@@ -59,15 +52,8 @@ module.exports = {
           fallback: "style-loader",
           use: [
             {
-              loader: "css-loader",
-              options: {
-                modules: true, // default is false
-                sourceMap: true,
-                importLoaders: 2,
-                localIdentName: "[name]--[local]--[hash:base64:8]"
-              }
+              loader: "css-loader"
             },
-            "postcss-loader",
             "sass-loader"
           ]
         })

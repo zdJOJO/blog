@@ -1,0 +1,81 @@
+.myModal-transition {
+  top: 0;
+  left: calc(50% - 14rem);
+  margin: 10vh 0;
+  width: 28rem;
+  border: none;
+
+  .pt-dialog-body{
+    max-height: 60vh;
+    // overflow-y: scroll;
+    overflow: unset;
+    
+    .pt-input-group{
+      margin: 1.2rem 0.4rem;
+
+      .pt-popover-content{
+        width: 10rem;
+        white-space: normal;
+        word-break: break-word;
+      }
+    }
+  }
+}
+.myModal-transition.pt-overlay-enter, .myModal-transition.pt-overlay-appear {
+    // -webkit-transform: translateY(-10vh) rotate(-10deg) !important;
+    // transform: translateY(-10vh) rotate(-10deg) !important; 
+
+    -webkit-animation: docs-wiggle-rotate 100ms cubic-bezier(0.4, 1, 0.75, 0.9) infinite;
+    animation: docs-wiggle-rotate 100ms cubic-bezier(0.4, 1, 0.75, 0.9) infinite; 
+}
+.myModal-transition.pt-overlay-enter-active, .myModal-transition.pt-overlay-appear-active {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+    transition-duration: 300ms;
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition-timing-function: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+    transition-delay: 300ms;
+}
+.myModal-transition.pt-overlay-leave {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg); 
+}
+.myModal-transition.pt-overlay-leave-active {
+    -webkit-transform: translateY(150vh) rotate(-20deg);
+    transform: translateY(150vh) rotate(-20deg);
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 1, 0.75, 0.9);
+    transition-delay: 0; 
+}
+
+@keyframes docs-wiggle-rotate {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); 
+  }
+  25% {
+    -webkit-transform: rotate(-3deg);
+    transform: rotate(-3deg); 
+  }
+  75% {
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg); 
+  }
+  100% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); 
+  } 
+}
+
+@media screen and (max-width: 414px ){
+  .myModal-transition {
+    top: 2.5rem;
+    left: calc(50% - 10rem);
+    width: 20rem;
+  }
+}

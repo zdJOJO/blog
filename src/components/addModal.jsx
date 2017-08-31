@@ -1,9 +1,6 @@
 import React from "react";
 import {observer} from "mobx-react";
 
-import Button from "react-toolbox/lib/button";
-import theme from "./css/button.scss";
-
 const AddModal = (props) => {
   return(
     <form 
@@ -29,7 +26,7 @@ const AddModal = (props) => {
           })
         }
       </ul>
-      <Button type="submit" label="确定" flat></Button>
+      <button type="submit">确定</button>
     </form>
   );
 };

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import {observer} from "mobx-react";
+import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
+import classNames from "classnames";
 
-import FontIcon from "react-toolbox/lib/font_icon";
-import Button from "react-toolbox/lib/button";
-import LinkButton from "../../components/linkButton";
+import { Button, Icon, Intent } from "@blueprintjs/core";
 
+import FormModal from '../../components/formModal';
 import HomeStore from "./homeStore";
-import homeStyle from "./home.scss";
+
+import "./home.scss";
 
 @observer
 class Home extends Component{
@@ -17,9 +19,13 @@ class Home extends Component{
     this.myHomeStore.changeImg();
   }
 
+  handleClose=()=>{
+    this.myHomeStore.showLoginModal(false);
+  }
+
   render(){
     return(                 
-      <div className={homeStyle.home}>
+      <div className="home">
         {
           this.myHomeStore.imgList.map((ele, index)=>{
             const style = {
@@ -29,16 +35,28 @@ class Home extends Component{
             return(
               <div
                 key={index} 
-                className={ homeStyle.imgList } 
+                className="imgList"
                 style={style} 
               />
             );
           })
         }
-        <Button icon="person" primary className={homeStyle.primary} />
-        <LinkButton className={homeStyle.enterBtn} href="/main/page1" flat>
-          <FontIcon className={homeStyle.icon} value="forward"/> 进入博客
-        </LinkButton>
+        <Button className="pt-minimal enterBtn" rightIconName="direction-right">
+          <Link to="/main/page1">进入博客</Link>
+        </Button>
+        <Icon className="login" iconName="user"
+          onClick={()=>{this.myHomeStore.showLoginModal(true)}}
+        />
+        <FormModal 
+          loginInfo={this.myHomeStore.loginInfo}
+          isOpen={this.myHomeStore.loginModalShow} 
+          inputGroup={this.myHomeStore.inputGroup}
+          onChange={this.myHomeStore.handleChange}
+          onBlur={this.myHomeStore.hadnleBlur}
+          onKeyUp={this.handleKeyUp}
+          onClose={this.handleClose}
+          {...this.myHomeStore.initalState}
+        />
       </div>  		
     );
   }

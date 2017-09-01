@@ -33,7 +33,7 @@ const FormModal = ({...props}) => {
       content={text} 
       inline={true}
       intent={intent}
-      position={Position.RIGHT_BOTTOM}
+      position={Position.RIGHT}
     >
       <Button
         className={Classes.MINIMAL}
@@ -54,7 +54,10 @@ const FormModal = ({...props}) => {
     >
       <div className={classes}>
         <form
-          onSubmit={(event)=>{event.preventDefault()}}
+          onSubmit={(event)=>{
+            event.preventDefault();
+            props.onSubmit();
+          }}
         >
           <div className="pt-dialog-body"> 
             {

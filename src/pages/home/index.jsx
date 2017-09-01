@@ -53,6 +53,7 @@ class Home extends Component{
           inputGroup={this.myHomeStore.inputGroup}
           onChange={this.myHomeStore.handleChange}
           onBlur={this.myHomeStore.hadnleBlur}
+          onSubmit={this.myHomeStore.handleSubmit}
           onKeyUp={this.handleKeyUp}
           onClose={this.handleClose}
           {...this.myHomeStore.initalState}

@@ -21,7 +21,7 @@ module.exports = {
   }),
 
   userSchema: new mongoose.Schema({
-    userName: String,
+    username: String,
     nickname: String,
     password: String,
     headPic: String,

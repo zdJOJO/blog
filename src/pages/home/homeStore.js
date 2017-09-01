@@ -3,6 +3,8 @@ import {observable, action} from "mobx";
 import img1 from "../../../static/img/bk-1.jpg";
 import img2 from "../../../static/img/bk-2.jpg";
 import img3 from "../../../static/img/bk-3.jpg";
+import {hex_sha1} from '../../utils/sha1';
+import myFetch from "../../utils/http";
 
 class HomeStore {
 
@@ -92,7 +94,6 @@ class HomeStore {
     this.loginInfo.set(property, event.target.value);
   }
 
-
   @action hadnleBlur = (property, index) => {
     //匹配邮箱
     let patrn = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
@@ -112,6 +113,21 @@ class HomeStore {
     if(event.target.value === 13){
       console.log('提交');
     }
+  }
+
+  //提交
+  @action handleSubmit = () => {
+    let obj = {};
+    this.loginInfo.forEach((value, key)=>{
+      obj[key] = value ;
+    });
+    myFetch("/api/login", "post", {
+      username: this.loginInfo.get("username"),
+      password: hex_sha1(this.loginInfo.get("password1"))
+    })
+      .then( json => {
+        console.log(json);
+      });
   }
 
   isRegisterUserName = (patrn, str) => {    

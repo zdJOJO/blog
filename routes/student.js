@@ -1,4 +1,5 @@
 const studentModel = require("../models").studentModel;
+const saveCtrl = require("./controller");
 
 module.exports = function(app) {
   
@@ -17,14 +18,9 @@ module.exports = function(app) {
 
   //添加学生
   app.post("/school/student/add", (req, res)=>{
-    let obj = {};
-    Object.keys(req.body).forEach( element => {
-      obj[element] = req.body[element] || null;
-    });
-    let studentEntity = new studentModel(obj);
-    studentEntity.save( err =>{
+    saveCtrl.handleSave(req.body, studentModel, (err, entity)=>{
       res.send({
-        result: err || studentEntity,
+        result: err || entity,
         msg: err || "add success",
         status: err ? -1 : 0
       });

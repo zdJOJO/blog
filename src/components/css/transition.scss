@@ -16,11 +16,23 @@
       .pt-popover-content{
         width: 10rem;
         white-space: normal;
-        word-break: break-word;
+        word-break: break-all;
         font-size: 13px;
         padding: 5px;
       }
     }
+  }
+  .pt-button.close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+  .header{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    color: #333;
   }
 }
 .myModal-transition.pt-overlay-enter, .myModal-transition.pt-overlay-appear {

@@ -9,7 +9,7 @@ const getModel =(collectionName, schema) => {
 };
 
 module.exports = {
-  studentModel: getModel("students", studentSchema),
-  articleModel: getModel("articles", studentSchema),
-  userModel: getModel("users", studentSchema)
+  studentModel: getModel("student", studentSchema),
+  articleModel: getModel("article", articleSchema),
+  userModel: getModel("user", userSchema)
 };

@@ -34,3 +34,6 @@ a simple demon of react-router4
 
 # UI 库
   http://blueprintjs.com/docs/#core/components
+
+# 启动mongodb
+ `mongod --dbpath=D:\mongodb\data\db --logpath=D:\mongodb\logs\mongod.log`

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
-import classNames from "classnames";
 
-import { Button, Icon, Intent } from "@blueprintjs/core";
+import { Button, Icon } from "@blueprintjs/core";
 
 import FormModal from '../../components/formModal';
 import HomeStore from "./homeStore";
@@ -16,12 +15,12 @@ class Home extends Component{
   myHomeStore = new HomeStore();
 
   componentDidMount(){
-    //this.myHomeStore.changeImg();
+    this.myHomeStore.changeImg();
   }
 
   handleClose=()=>{
     this.myHomeStore.showLoginModal(false);
-  }
+  };
 
   render(){
     return(                 
@@ -47,13 +46,19 @@ class Home extends Component{
         <Icon className="login" iconName="user"
           onClick={()=>{this.myHomeStore.showLoginModal(true)}}
         />
-        <FormModal 
+        <FormModal
+          head={<span>{this.myHomeStore.isLoginTab ? "Sign in to Blog" : "Create an account"}</span>}
           loginInfo={this.myHomeStore.loginInfo}
           isOpen={this.myHomeStore.loginModalShow} 
-          inputGroup={this.myHomeStore.inputGroup}
+          inputGroup={this.myHomeStore.activeInputGroup}
+          buttons={this.myHomeStore.actionButtons}
           onChange={this.myHomeStore.handleChange}
-          onBlur={this.myHomeStore.hadnleBlur}
-          onSubmit={this.myHomeStore.handleSubmit}
+          onBlur={this.myHomeStore.handleBlur}
+          onSubmit={()=>{
+            this.myHomeStore.handleSubmit(()=>{
+              this.props.history.push("/main/page1");
+            });
+          }}
           onKeyUp={this.handleKeyUp}
           onClose={this.handleClose}
           {...this.myHomeStore.initalState}
@@ -63,4 +68,4 @@ class Home extends Component{
   }
 }
 
-export default Home;
+export default withRouter(Home);

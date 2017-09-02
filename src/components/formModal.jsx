@@ -6,8 +6,8 @@ import React from "react";
 import { observer } from "mobx-react";
 import classNames from "classnames";
 import { 
-  Button, Overlay, Intent, Classes, 
-  Tooltip, Position,InputGroup, Icon 
+  Button, Overlay, Classes,
+  Tooltip, Position,InputGroup
 } from "@blueprintjs/core";
 import "./css/transition.scss";
 
@@ -53,6 +53,10 @@ const FormModal = ({...props}) => {
       { ...initalState }
     >
       <div className={classes}>
+        <Button className="close pt-minimal " iconName="cross" onClick={props.onClose}/>
+        <div className="header">
+          {props.head ||null}
+        </div>
         <form
           onSubmit={(event)=>{
             event.preventDefault();
@@ -75,21 +79,27 @@ const FormModal = ({...props}) => {
                     leftIconName={ele.leftIconName}
                     rightElement={ele.text ? infoSign(ele.intent, ele.text) : null} 
                     onChange={(event)=>{props.onChange(ele.property, event)}}
-                    onBlur={()=>{ props.onBlur(ele.property, index) || null }}
+                    onBlur={()=>{ props.onBlur(ele.property, index)}}
                   />
                 );
               })
             }
           </div>
           <div className="pt-dialog-footer">
-            <Button className="pt-minimal" 
-              intent={Intent.SUCCESS} 
-              type="submit"
-            >GO</Button>
-            <Button className="pt-minimal" intent={Intent.DANGER}
-              style={{float: "right"}} 
-              onClick={props.onClose}
-            >Cancle</Button>
+            {
+              props.buttons.map((button, index)=>{
+                return(
+                  <Button
+                    key={index}
+                    className="pt-minimal"
+                    style={ index===1 ? {float: "right"} : null }
+                    type={button.type || "button"}
+                    intent={button.intent}
+                    onClick={button.type==="submit" ? null : button.action}
+                  >{button.label}</Button>
+                );
+              })
+            }
           </div>
         </form>
       </div>

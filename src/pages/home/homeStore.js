@@ -1,4 +1,4 @@
-import {observable, action} from "mobx";
+import {observable, action, computed} from "mobx";
 
 import img1 from "../../../static/img/bk-1.jpg";
 import img2 from "../../../static/img/bk-2.jpg";
@@ -28,41 +28,101 @@ class HomeStore {
     WARNING = 2,
     DANGER = 3,
   */
-  @observable inputGroup = [
+  loginButtons = [
     {
-      leftIconName: "user", 
-      property: "username", 
-      placeholder:"Plz fill in the account", 
-      text: `match the user name can only letters at the beginning, can take the number, "_", "." String, enter 5-20 letters`, 
-      intent: 0,
-      required: true 
+      label: "Sign in",
+      type: "submit",
+      intent: 1,
+      action: ()=>{this.handleSubmit()}
     },
     {
-      leftIconName: "lock", 
-      property: "password1", 
-      placeholder:"Plz fill in the password", 
+      label: "Create an account",
+      intent: 0,
+      action: ()=> {
+        this.loginInfo.clear();
+        this.actionButtons = this.signUpButtons;
+        this.activeInputGroup = this.signUpInputGroup;
+        this.initalLoginInfo();
+      }
+    }
+  ];
+  loginInputGroup = [
+    {
+      leftIconName: "user",
+      property: "username",
+      placeholder:"please fill in the account",
+      intent: 0,
+      required: true
+    },
+    {
+      leftIconName: "lock",
+      property: "password",
+      placeholder:"please fill in the password",
+      intent: 0,
+      type: "password",
+      required: true
+    }
+  ];
+
+  signUpButtons = [
+    {
+      label: "Sign up",
+      type: "submit",
+      intent: 1,
+      action: ()=>{this.handleSubmit()}
+    },
+    {
+      label: "Back",
+      intent: 3,
+      action: ()=> {
+        this.loginInfo.clear();
+        this.actionButtons = this.loginButtons;
+        this.activeInputGroup = this.loginInputGroup;
+        this.initalLoginInfo();
+      }
+    }
+  ];
+  signUpInputGroup = [
+    {
+      leftIconName: "user",
+      property: "username",
+      placeholder:"create an account",
+      text: `match the user name can only letters at the beginning, can take the number, "_", "." String, enter 5-20 letters`,
+      intent: 0,
+      required: true
+    },
+    {
+      leftIconName: "lock",
+      property: "password1",
+      placeholder:"create a password",
       text: `The password consists of more than 6 letters and numbers, including at least one letter and number, and can not consist of pure numbers or letters. And can not be pure numbers, can not be pure letters, must contain a letter and number`,
       intent: 0,
       type: "password",
-      required: true 
+      required: true
     },
     {
-      leftIconName: "lock", 
-      property: "password2", 
-      placeholder:"Plz fill in the password again", 
+      leftIconName: "lock",
+      property: "password2",
+      placeholder:"please fill in the password again",
       text: `The password consists of more than 6 letters and numbers, including at least one letter and number, and can not consist of pure numbers or letters. And can not be pure numbers, can not be pure letters, must contain a letter and number`,
       intent: 0,
       type: "password",
-      required: true 
+      required: true
     },
     {
-      leftIconName: "envelope", 
-      property: "email", 
-      placeholder:"Plz fill in the email" ,
+      leftIconName: "envelope",
+      property: "email",
+      placeholder:"please fill in the email" ,
       type: "email",
       intent: 0
     }
-  ]
+  ];
+
+  //当前的 Buttons
+  @observable actionButtons = this.loginButtons;
+
+  //当前的 InputGroup
+  @observable activeInputGroup = this.loginInputGroup;
 
   @observable imgIndex = 0;
   @observable loginModalShow = false;
@@ -72,29 +132,32 @@ class HomeStore {
 
   //初始化 登录信息
   @action initalLoginInfo = ()=>{
-    this.inputGroup.forEach( ele =>{
+    this.activeInputGroup.forEach( ele =>{
       this.loginInfo.set(ele.property, '');
     });
-  }
+  };
 
   @action changeImg =()=>{
     this.timer = setInterval(()=>{
       this.num ++ ;
       this.imgIndex  = this.num % 3;
     },8000);
-  }
+  };
 
   @action showLoginModal =(bool)=>{
     this.loginModalShow = bool;
-    if(bool)
+    if(bool){
+      this.actionButtons = this.loginButtons;
+      this.activeInputGroup = this.loginInputGroup;
       this.initalLoginInfo();
-  }
+    }
+  };
 
   @action handleChange = (property, event) => {
     this.loginInfo.set(property, event.target.value);
-  }
+  };
 
-  @action hadnleBlur = (property, index) => {
+  @action handleBlur = (property, index) => {
     //匹配邮箱
     let patrn = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
     if(index===0){
@@ -105,29 +168,54 @@ class HomeStore {
       patrn = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$/;
     }
     let isRight = this.isRegisterUserName(patrn, this.loginInfo.get(property));
-    this.inputGroup[index].intent = !isRight ? 3 : 1 ;
-  }
+    this.activeInputGroup[index].intent = !isRight ? 3 : 1 ;
+  };
 
   //按enter键
   @action handleKeyUp = (event) => {
     if(event.target.value === 13){
       console.log('提交');
     }
-  }
+  };
 
-  //提交
-  @action handleSubmit = () => {
+  //  注册 || 登录 提交
+  @action handleSubmit = (callback=null) => {
     let obj = {};
     this.loginInfo.forEach((value, key)=>{
-      obj[key] = value ;
+      if ( key==="password" || key==="password1" || key==="password2" ){
+        obj[key] = hex_sha1(value);
+      }else {
+        obj[key] = value ;
+      }
     });
-    myFetch("/api/login", "post", {
-      username: this.loginInfo.get("username"),
-      password: hex_sha1(this.loginInfo.get("password1"))
-    })
+    if(!this.isLoginTab){
+      if (obj.password1 !== obj.password2) {
+        return false;
+      }else {
+        obj.password = obj.password1;
+      }
+    }
+    let url = this.isLoginTab ? "/api/login" : "/api/signup";
+    myFetch(url, "post", obj)
       .then( json => {
-        console.log(json);
+        if(json.status===0){
+          if(this.isLoginTab){
+            callback&&callback();
+          }else {
+            this.actionButtons = this.loginButtons;
+            this.loginInfo.clear();
+            this.activeInputGroup = this.loginInputGroup;
+            this.initalLoginInfo();
+          }
+        }else {
+          console.log("失败");
+        }
       });
+  };
+
+  // 登录 还是 注册
+  @computed get isLoginTab (){
+    return this.activeInputGroup.length===2 ;
   }
 
   isRegisterUserName = (patrn, str) => {    

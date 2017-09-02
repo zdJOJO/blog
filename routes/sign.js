@@ -8,8 +8,20 @@ const saveCtrl = require("./controller");
 module.exports = function(app) {
 
   //注册
-  app.post("/api/signup", (req, res)=>{
-    saveCtrl.handleSave(req.body, userModel, (err, entity)=>{
+  app.post("/api/signup", (req, res, next) => {
+    userModel.findOne({"username": req.body.username}, (err, user)=>{
+      if(user){
+        res.send({
+          result: null,
+          msg: "user already exists",
+          status: -1
+        });
+      }else {
+        next();
+      }
+    });
+  }, (req, res) => {
+    saveCtrl.handleSave(req.body, userModel, (err, entity) => {
       res.send({
         result: err || entity,
         msg: err || "registered successfully",
@@ -19,10 +31,9 @@ module.exports = function(app) {
   });
 
   //登录
-  app.post("/api/login", (req, res)=>{
-    userModel.findOne({"username": req.body.username}, (err, user)=>{
-      if (err){
-        throw err;
+  app.post("/api/login", (req, res) => {
+    userModel.findOne({"username": req.body.username}, (err, user) => {
+      if (!user){
         res.send({
           result: null,
           msg: 'username does not exist',
@@ -32,8 +43,8 @@ module.exports = function(app) {
         let isPasswordCorrected = req.body.password===user.toObject().password;
         res.send({
           result: isPasswordCorrected ? user : null,
-          msg: isPasswordCorrected ? 'success': 'password error !',
-          status: isPasswordCorrected ? 0 : 1
+          msg: isPasswordCorrected ? 'success login': 'password error !',
+          status: isPasswordCorrected ? 0 : -1
         });
       }
     });

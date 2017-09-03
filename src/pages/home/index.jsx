@@ -28,7 +28,7 @@ class Home extends Component{
         {
           this.myHomeStore.imgList.map((ele, index)=>{
             const style = {
-              backgroundImage: `url(${ele})`,
+              background: `url(${ele}) no-repeat`,
               opacity: index===this.myHomeStore.imgIndex ? 1 : 0
             };
             return(

@@ -21,7 +21,8 @@
 
   @media screen and (max-width: 414px) {
     .imgList{
-      min-width: 320px;
+      background-size: 80% !important;
+      background-position-x: -30rem !important;
     }
   }
 

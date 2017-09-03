@@ -3,6 +3,7 @@ import {observable, action, computed} from "mobx";
 import img1 from "../../../static/img/bk-1.jpg";
 import img2 from "../../../static/img/bk-2.jpg";
 import img3 from "../../../static/img/bk-3.jpg";
+import img4 from "../../../static/img/bk-4.jpg";
 import {hex_sha1} from '../../utils/sha1';
 import myFetch from "../../utils/http";
 import MyToast from "../../components/toast";
@@ -12,7 +13,7 @@ class HomeStore {
   toast; // 弹框
   timer;
   num = 0;
-  imgList = [img2, img1, img3];
+  imgList = [img2, img1, img3, img4];
 
   initalState = {
     autoFocus: true,
@@ -126,6 +127,9 @@ class HomeStore {
   //当前的 InputGroup
   @observable activeInputGroup = this.loginInputGroup;
 
+  // 必填项： 数据是否合法
+  @observable isRequiredDataLegal = false;
+
   @observable imgIndex = 0;
   @observable loginModalShow = false;
 
@@ -142,8 +146,8 @@ class HomeStore {
   @action changeImg =()=>{
     this.timer = setInterval(()=>{
       this.num ++ ;
-      this.imgIndex  = this.num % 3;
-    },8000);
+      this.imgIndex  = this.num % 4;
+    }, 8000);
   };
 
   @action showLoginModal =(bool)=>{
@@ -171,6 +175,8 @@ class HomeStore {
     }
     let isRight = this.isRegisterUserName(patrn, this.loginInfo.get(property));
     this.activeInputGroup[index].intent = !isRight ? 3 : 1 ;
+    if(index!==3)
+      this.isRequiredDataLegal = isRight;
   };
 
   //按enter键
@@ -194,10 +200,15 @@ class HomeStore {
     });
     if(!this.isLoginTab){
       if (obj.password1 !== obj.password2) {
+        this.toast.error("the password entered is not the same", 5000);
         return false;
       }else {
         obj.password = obj.password1;
       }
+    }
+    if(!this.isRequiredDataLegal){
+      this.toast.error("please fill in the correct information", 5000);
+      return false;
     }
     let url = this.isLoginTab ? "/api/login" : "/api/signup";
     myFetch(url, "post", obj)

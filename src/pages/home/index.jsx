@@ -60,7 +60,7 @@ class Home extends Component{
             });
           }}
           onKeyUp={this.handleKeyUp}
-          onClose={this.handleClose}
+          onHide={this.handleClose}
           {...this.myHomeStore.initalState}
         />
       </div>  		

@@ -5,9 +5,11 @@ import img2 from "../../../static/img/bk-2.jpg";
 import img3 from "../../../static/img/bk-3.jpg";
 import {hex_sha1} from '../../utils/sha1';
 import myFetch from "../../utils/http";
+import MyToast from "../../components/toast";
 
 class HomeStore {
 
+  toast; // 弹框
   timer;
   num = 0;
   imgList = [img2, img1, img3];
@@ -180,6 +182,8 @@ class HomeStore {
 
   //  注册 || 登录 提交
   @action handleSubmit = (callback=null) => {
+    if(!this.toast)
+      this.toast = new MyToast("TOP_RIGHT");
     let obj = {};
     this.loginInfo.forEach((value, key)=>{
       if ( key==="password" || key==="password1" || key==="password2" ){
@@ -200,15 +204,22 @@ class HomeStore {
       .then( json => {
         if(json.status===0){
           if(this.isLoginTab){
+            this.toast.success("login success", 2000);
             callback&&callback();
           }else {
+            this.toast.success("sign up success", 2000);
             this.actionButtons = this.loginButtons;
             this.loginInfo.clear();
             this.activeInputGroup = this.loginInputGroup;
             this.initalLoginInfo();
           }
         }else {
-          console.log("失败");
+          this.toast.error(json.msg, 5000, {
+            text: "Retry",
+            onClick: ()=>{
+              this.handleSubmit(callback);
+            }
+          });
         }
       });
   };

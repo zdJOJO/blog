@@ -46,14 +46,14 @@ const FormModal = ({...props}) => {
 
   return(
     <Overlay 
-      isOpen={props.isOpen} 
-      onClose={props.onClose}
+      isOpen={props.isOpen}
       className={Classes.OVERLAY_SCROLL_CONTAINER}
       onKeyUp={(event)=>{props.onKeyUp(event)} }
+      // onClose={props.onHide}
       { ...initalState }
     >
       <div className={classes}>
-        <Button className="close pt-minimal " iconName="cross" onClick={props.onClose}/>
+        <Button className="close pt-minimal " iconName="cross" onClick={props.onHide}/>
         <div className="header">
           {props.head ||null}
         </div>

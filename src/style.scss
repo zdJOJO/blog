@@ -2,12 +2,39 @@
 /* @import "~@blueprintjs/core"; */
 @import "~@blueprintjs/core/dist/blueprint.css";
 
+//定义一个mixin 根据不同dpr将px值转化成相应的dpr的px值。
+/*
+  @params $name 是css属性 比如width,top,font-size等
+  @params $px 像素值
+*/
+@mixin px2px($name,$px){
+  #{$name}:round($px/2)*1px;
+  [data-dpr='2'] & {
+    #{$name}: $px*1px !important;
+  }
+  // for mx3
+  [data-dpr="2.5"] & {
+    #{$name}: round($px * 2.5 / 2) * 1px !important;
+  }
+  // for 小米note
+  [data-dpr="2.75"] & {
+    #{$name}: round($px * 2.75 / 2) * 1px !important;
+  }
+  [data-dpr="3"] & {
+    #{$name}: round($px / 2 * 3) * 1px !important;
+  }
+  // for 三星note4
+  [data-dpr="4"] & {
+    #{$name}: $px * 2px !important;
+  }
+}
+
 html, body{
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  font-size: 15px !important;
+  @include px2px($name:font-size, $px:12);
 }
 
 ::-webkit-scrollbar{
@@ -39,18 +66,16 @@ main{
 
 footer{
   width: 100%;
-  height: 40px;
   background-color: rgb(52, 52, 52);
   position: fixed;
   bottom: 0;
   text-align: center;
   box-shadow: 1px 1px hsla(0,0%,100%,.65);
+  line-height: 35px;
 }
 
 footer span{
-  display: inline-block;
-  margin-top: 10px;
-  padding: 0 10px;
-  color: rgba(177, 177, 177, 0.26);
+  padding: 0 0.2rem;
   font-size: 12px;
+  color: rgba(177, 177, 177, 0.26);
 }

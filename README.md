@@ -35,10 +35,19 @@ a simple demon of react-router4
 # UI 库
   http://blueprintjs.com/docs/#core/components
 
-# 启动mongodb
-  ` mongod --dbpath "d://local-repository//mongodb//data" --logpath "d://local-repository//mongodb//log//mongodb.log" --logappend `
-    或者
- `mongod --dbpath /home/web/mongodb/data/db/ --logpath /home/web/mongodb/log/mongodb.log --logappend`
+# 
+  1.  启动mongodb
+      ` mongod --dbpath d:\local-repository\mongodb\data --logpath d:\local-repository\mongodb\log\mongodb.log --logappend `
+        或者
+     `mongod --dbpath /home/web/mongodb/data/db/ --logpath /home/web/mongodb/log/mongodb.log --logappend`
+     
+     如果出错：mongod --repair --dbpath=/usr/local/data
+     
+  2.  node 服务在后台跑， 使用 ` screen ` 命令
+    
+    screen -S test1  #创建 一个 screen
+    Ctrl+a+d   #按Ctrl+a，然后再按d即可保留Screen
+    screen -R test1  #先试图恢复离线的作业。若找不到离线的作业，即建立新的screen作业。
 
 
 # 文件目录结构

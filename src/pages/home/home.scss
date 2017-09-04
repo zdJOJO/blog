@@ -21,8 +21,8 @@
 
   @media screen and (max-width: 414px) {
     .imgList{
-      background-size: 80% !important;
-      background-position-x: -30rem !important;
+      background-size: 85% !important;
+      background-position-x: -11rem !important;
     }
   }
 
@@ -38,8 +38,11 @@
     span{
       color: #fff;
       position: absolute;
-      right: 1rem;
-      top:  1.5rem;
+      right: 2vh;
+      top: 50%;
+      margin-top: -7px;
+      display: block;
+      height: 14px;
     }
 
     a{

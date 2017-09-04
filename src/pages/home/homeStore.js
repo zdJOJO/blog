@@ -1,9 +1,9 @@
 import {observable, action, computed} from "mobx";
 
-import img1 from "../../../static/img/bk-1.jpg";
-import img2 from "../../../static/img/bk-2.jpg";
-import img3 from "../../../static/img/bk-3.jpg";
-import img4 from "../../../static/img/bk-4.jpg";
+import img1 from "../../img/bk-1.jpg";
+import img2 from "../../img/bk-2.jpg";
+import img3 from "../../img/bk-3.jpg";
+import img4 from "../../img/bk-4.jpg";
 import {hex_sha1} from '../../utils/sha1';
 import myFetch from "../../utils/http";
 import MyToast from "../../components/toast";

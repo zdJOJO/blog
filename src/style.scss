@@ -1,3 +1,7 @@
+
+/* @import "~@blueprintjs/core"; */
+@import "~@blueprintjs/core/dist/blueprint.css";
+
 html, body{
   margin: 0;
   padding: 0;
@@ -41,12 +45,12 @@ footer{
   bottom: 0;
   text-align: center;
   box-shadow: 1px 1px hsla(0,0%,100%,.65);
+}
 
-  span{
-    display: inline-block;
-    margin-top: 10px;
-    padding: 0 10px;
-    color: rgba(177, 177, 177, 0.26);
-    font-size: 12px;
-  }
+footer span{
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0 10px;
+  color: rgba(177, 177, 177, 0.26);
+  font-size: 12px;
 }

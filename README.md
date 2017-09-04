@@ -36,6 +36,6 @@ a simple demon of react-router4
   http://blueprintjs.com/docs/#core/components
 
 # 启动mongodb
- `mongod --dbpath=D:\mongodb\data\db --logpath=D:\mongodb\logs\mongod.log`
+  ` mongod --dbpath "d://local-repository//mongodb//data" --logpath "d://local-repository//mongodb//log//mongodb.log" --logappend `
     或者
- `mongod --dbpath /home/web/mongodb/data/db/ --logpath /home/web/mongodb/log/mongodb.log`
+ `mongod --dbpath /home/web/mongodb/data/db/ --logpath /home/web/mongodb/log/mongodb.log --logappend`

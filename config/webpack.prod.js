@@ -3,6 +3,11 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+
+if (process.env.NODE_ENV !== "production") {
+  throw new Error(' Production builds must have NODE_ENV=production ');
+}
+
 module.exports = {
 
   entry: {
@@ -18,7 +23,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx", '.css', '.scss', '.sass']
   },
 
   module: {
@@ -59,8 +64,13 @@ module.exports = {
         })
       },
       {
-        test: /\.(png|jpg)$/,
-        use: "url-loader?limit=8192"
+        test: /\.(png|jpg|gif)$/,
+        //name 字段指定了在打包根目录（output.path）下生成名为 img 的文件夹，并在原图片名前加上8位 hash 值
+        use: "url-loader?name=images/[hash:8].[name].[ext]&limit=8192"
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+        use: "file-loader?name=fonts/[hash:8].[name].[ext]"
       }
     ]
   },
@@ -69,7 +79,7 @@ module.exports = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+        'NODE_ENV': JSON.stringify('production')
       }
     }),
 

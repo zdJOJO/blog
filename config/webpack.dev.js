@@ -21,7 +21,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx", '.css', '.scss', '.sass']
   },
 
   module: {
@@ -61,6 +61,10 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         use: "url-loader?limit=8192"
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+        use: "file-loader"
       }
     ]
   },

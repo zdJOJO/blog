@@ -39,3 +39,30 @@ a simple demon of react-router4
   ` mongod --dbpath "d://local-repository//mongodb//data" --logpath "d://local-repository//mongodb//log//mongodb.log" --logappend `
     或者
  `mongod --dbpath /home/web/mongodb/data/db/ --logpath /home/web/mongodb/log/mongodb.log --logappend`
+
+
+# 文件目录结构
++---config  ` 打包文件 `
++---models  ` mongoose模板, 可对数据库进行操作 `
++---node_modules  
++---routes ` api 接口 `
+|   \---controller ` CRUD 公共方法 `
++---schemas  ` 数据库表结构定义 `
++---src  ` 前端源代码 `
+|   +---components  ` 公共组件 `
+|   |   \---css
+|   +---html-tpl  
+|   +---img
+|   +---pages ` 页面 `
+|   |   +---app
+|   |   +---home
+|   |   \---main
+|   |       +---page1
+|   |       \---page2
+|   +---routes  ` 前端路由 `
+|   \---utils  ` 公共方法 `
+\---static  ` 静态文件 `
+    +---css
+    +---img
+    +---js
+    \---pages ` build目录 `

@@ -9,11 +9,9 @@ import Main from "bundle-loader?lazy&name=main!../main";
 
 const Footer = () => (
   <footer>
-    <div>
-      <span>© 2017 zdJOJO</span>
-      <span>年轻人稳重一点</span>
-      <span>不要一言不合就开车</span>
-    </div>
+    <span>© 2017 zdJOJO</span>
+    <span>年轻人稳重一点</span>
+    <span>不要一言不合就开车</span>
   </footer>
 );
 

@@ -1,8 +1,9 @@
 .myModal-transition {
   top: 0;
-  left: calc(50% - 14rem);
+  left: calc(50% - 1.7rem);
   margin: 10vh 0;
-  width: 28rem;
+  width: 3.4rem;
+  min-width: 3.4rem;
   border: none;
 
   .pt-dialog-body{
@@ -11,7 +12,7 @@
     overflow: unset;
     
     .pt-input-group{
-      margin: 1.2rem 0.4rem;
+      margin: 0.2rem 0.3rem;
 
       .pt-popover-content{
         width: 10rem;
@@ -19,9 +20,19 @@
         word-break: break-all;
         font-size: 13px;
         padding: 5px;
+        max-width: 1rem;
       }
     }
   }
+
+  .pt-dialog-footer{
+    font-size: 14px;
+    .pt-button:last-child:after{
+      display: block;
+      clear: both;
+    }
+  }
+
   .pt-button.close{
     position: absolute;
     right: 5px;
@@ -88,8 +99,18 @@
 
 @media screen and (max-width: 414px ){
   .myModal-transition {
-    top: 2.5rem;
-    left: calc(50% - 10rem);
-    width: 20rem;
+    top: 1.2rem;
+    left: calc(50% - 4.2rem);
+    width: 8.4rem;
+
+    .pt-dialog-body {
+      .pt-input-group{
+        margin: 0.6rem 0.1rem;
+        .pt-popover-content{
+          max-width: 3rem;
+        }
+      }
+    }
+
   }
 }

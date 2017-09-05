@@ -1,10 +1,10 @@
 import {observable, action} from "mobx";
-import myFetch from "../../utils/http";
+// import myFetch from "../../utils/http";
 
 class MainStore {
 
   // theme主题颜色
-  @observable isChooseTheme = false;
+  @observable isChooseTheme = true;
 
   //是否显示 userDetail
   @observable isShowUserInfo = false;
@@ -13,10 +13,10 @@ class MainStore {
 
   @action handleChangeTheme =()=> {
     this.isChooseTheme = !this.isChooseTheme;
-  }
+  };
 
-  @action showUserInfo =()=> {
-    this.isShowUserInfo = true;
+  @action showUserInfo =(bool=true)=> {
+    this.isShowUserInfo = bool;
   }
   
 }

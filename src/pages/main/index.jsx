@@ -1,6 +1,6 @@
 import React from "react";
 import {observer} from "mobx-react";
-import {Switch, Route, Redirect } from "react-router-dom";
+import {Switch, Route } from "react-router-dom";
 
 import { createComponent } from "../../routes/routes";
 import Page1 from "bundle-loader?lazy&name=page1!./page1";
@@ -17,24 +17,20 @@ const links = [
 
 
 const showStyle = {
-  transition: "width 0.4s linear",
-  width: "85%"
+  transition: "all 0.5s ease",
+  paddingRight: "220px"
 };
 const Header = observer(() => 
   <div>
     <NavBar 
-      style={myMainStore.isShowUserInfo ? showStyle : null}
+      style={myMainStore.isShowUserInfo ? showStyle : {paddingRight:　0, transition: "all 0.5s ease"}}
       links={links}
       isChooseTheme={myMainStore.isChooseTheme}
       handleChangeTheme={myMainStore.handleChangeTheme}
       showUserInfo={myMainStore.showUserInfo}
-    /> 
-    {myMainStore.isShowUserInfo && <div className="mask" />}
-    <div className={myMainStore.isShowUserInfo ? "slider-container" : ""}>
-      <UserSlider
-        isShowUserInfo={myMainStore.isShowUserInfo}
-      />
-    </div>
+    />
+    <UserSlider isShowUserInfo={myMainStore.isShowUserInfo} />
+    {myMainStore.isShowUserInfo && <div className="mask" onClick={()=>{myMainStore.showUserInfo(false)}}/>}
   </div>
 );
 

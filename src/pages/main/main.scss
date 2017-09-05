@@ -10,6 +10,14 @@ main{
 .pt-navbar{
   transition: background-color 0.5s cubic-bezier(1, 0.3, 1, 1);
   width: 100%;
+
+  .pt-control.pt-switch{
+    margin-bottom: 0;
+  }
+
+  .pt-popover-target{
+    padding: 0 10px;
+  }
 }
 
 .userSlider{
@@ -19,15 +27,11 @@ main{
   height: 100%;
   right: 0;
   top: 0;
-  transition: width 0.4s linear;
+  transition: all 0.5s ease;
   
   &.show{
     width: 15%;
   }
-}
-
-.pt-control.pt-switch{
-  margin-bottom: 0;
 }
 
 .pt-popover.pt-popover-content-sizing .pt-popover-content{
@@ -35,37 +39,45 @@ main{
 }
 
 .mask{
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: 1;
   z-index: 20;
-  background-color: rgba(16, 22, 26, 0.7);
+  background-color: rgba(0,0,0, 0.35);
   overflow: auto;
 }
 
-.slider-container{
+.userSlider{
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: #394b59;
+  transition: all 0.5s ease;
+  z-index: 25;
 
-  position: absolute;
-  z-index: 90;
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  opacity: 1;
+  &.show{
+    width: 220px;
+    z-index: 30;
+  }
+}
 
-  .userSlider{
-    width: 0;
-    height: 100%;
-    top: 0;
-    right: 0;
-    background: #fff;
-
-    &.show{
-      transition: width 0.4s linear;
-      width: 15%;
+@media screen and (max-width: 414px){
+  .pt-navbar{
+    padding: 0 5px;
+    .pt-navbar-group.pt-align-right{
+      a{
+        display: flex;
+      }
+    }
+    .pt-control.pt-switch{
+      font-size: 14px;
+      margin-right: 0.15rem;
+    }
+    .pt-popover-target{
+      display: flex;
     }
   }
-
 }

@@ -1,32 +1,42 @@
 import React from "react";
 import {observer} from "mobx-react";
-import {Switch, Route, Redirect, Link } from "react-router-dom";
+import {Switch, Route, Redirect } from "react-router-dom";
 
 import { createComponent } from "../../routes/routes";
 import Page1 from "bundle-loader?lazy&name=page1!./page1";
 import Page2 from "bundle-loader?lazy&name=page2!./page2";
+import NavBar from "../../components/navBar";
+import UserSlider from "../../components/userSlider";
 import myMainStore from "./mainStore";
 import "./main.scss";
 
 const links = [
-  { href: "/main/page1", icon: "add", label: "Page1" },
+  { href: "/main/page1", icon: "manual", label: "Page1" },
   { href: "/main/page2", icon: "inbox", label: "Page2" }
 ];
 
-const Header = observer(() => (
-  <div
-  >
-    <nav 
-      type="horizontal"
-    >
-      {
-        links.map( (ele,index) => (
-          <Link key={index} to={ele.href}>{ele.label}</Link>
-        ))
-      }
-    </nav>
+
+const showStyle = {
+  transition: "width 0.4s linear",
+  width: "85%"
+};
+const Header = observer(() => 
+  <div>
+    <NavBar 
+      style={myMainStore.isShowUserInfo ? showStyle : null}
+      links={links}
+      isChooseTheme={myMainStore.isChooseTheme}
+      handleChangeTheme={myMainStore.handleChangeTheme}
+      showUserInfo={myMainStore.showUserInfo}
+    /> 
+    {myMainStore.isShowUserInfo && <div className="mask" />}
+    <div className={myMainStore.isShowUserInfo ? "slider-container" : ""}>
+      <UserSlider
+        isShowUserInfo={myMainStore.isShowUserInfo}
+      />
+    </div>
   </div>
-));
+);
 
 const MainContent = () => (
   <main>

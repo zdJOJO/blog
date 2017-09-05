@@ -1,7 +1,7 @@
 {
   "name": "my-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "wewew",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --inline --config config/webpack.dev.js",

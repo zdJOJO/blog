@@ -1,13 +1,8 @@
 {
   "name": "my-blog",
   "version": "1.0.0",
-<<<<<<< HEAD
   "description": "wewew",
   "main": "index.js",
-=======
-  "description": "",
-  "main": "index.js" ,
->>>>>>> e2c6b831841b1ecb58439c20962a8e0534fb0674
   "scripts": {
     "start": "webpack-dev-server --progress --inline --config config/webpack.dev.js",
     "build": "set NODE_ENV=production&&webpack --color --progress --config config/webpack.prod.js",

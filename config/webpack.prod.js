@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 
 if (process.env.NODE_ENV !== "production") {
@@ -11,8 +12,7 @@ if (process.env.NODE_ENV !== "production") {
 module.exports = {
 
   entry: {
-    app: "./src/index",
-    common_react: ["react", "react-dom", "react-router", "mobx-react", "mobx"]
+    app: "./src/index"
   },
 
   output: {
@@ -46,7 +46,10 @@ module.exports = {
           fallback: "style-loader",
           use: [
             {
-              loader: "css-loader"
+              loader: "css-loader",
+              options: {
+                minimize: true
+              }
             }
           ]
         })
@@ -83,13 +86,23 @@ module.exports = {
       }
     }),
 
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require("./manifest.json")
+    }),
+
     new webpack.optimize.UglifyJsPlugin({
+      beautify: false,  // 最紧凑的输出
       comments: false,        //去掉注释
       compress: {
-        warnings: false  //忽略警告,要不然会有一大堆的黄色字体出现
+        warnings: false,  //忽略警告,要不然会有一大堆的黄色字体出现
+        drop_console: true, // 删除所有的 `console` 语句
+        collapse_vars: true, // 内嵌定义了但是只用到一次的变量
+        reduce_vars: true // 提取出出现多次但是没有定义成变量去引用的静态值
       },
       except: ["$super", "$", "exports", "require"]    //排除关键字
     }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
 
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, "../static/index.html"),
@@ -101,13 +114,12 @@ module.exports = {
       disable: false, 
       allChunks: true 
     }),
-    
-    new webpack.NoEmitOnErrorsPlugin(),
 
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "common_react",
-      minChunks: Infinity
-    })
+    new OptimizeCssAssetsPlugin({
+      cssProcessorOptions: { discardComments: {removeAll: true }}
+    }),
+    
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 
 };

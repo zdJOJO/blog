@@ -5,7 +5,6 @@ import {
   Popover, PopoverInteractionKind, Menu, MenuDivider, MenuItem
 } from "@blueprintjs/core";
 
-
 const PopOverContent = ({...props}) => (
   <Menu>
     <MenuDivider title="User" />
@@ -28,42 +27,71 @@ const PopOverContent = ({...props}) => (
 );
 
 const NavBar = ({...props}) => (
-  <nav 
-    style={props.style}
-    className={`pt-navbar .modifier ${props.isChooseTheme ? "pt-dark" : ""}`}
-  >
-    <div className="pt-navbar-group pt-align-right">
-      {
-        props.links.map((ele, index)=>{
-          return (
-            <Link key={index} to={ele.href}>
-              <button className={`pt-button pt-minimal pt-icon-${ele.icon}`}>
-                {ele.label}
-              </button>
-            </Link>
-          );
-        })
+  <div>
+    <nav 
+      style={props.style}
+      className={`pt-navbar .modifier ${props.isChooseTheme ? "pt-dark" : ""}`}
+    >
+
+
+      { props.isMobile && 
+        <div className="pt-navbar-group">
+          <div className={`pt-popover-content mobileSearch ${props.isShowMobileSearch ? "show" : ""}`}> 
+            <div className="pt-navbar-group " style={{marginRight: "20px"}}>
+              <div className="pt-navbar-heading"><Button className="pt-minimal" iconName="search"/></div>
+              <input className="pt-input" placeholder="Search files..." type="text" />
+            </div>
+          </div>
+          <Button 
+            className="pt-minimal" 
+            iconName={`horizontal-bar-chart-${props.isShowMobileSearch ? "asc" : "desc"}`}
+            onClick={props.showMobileSearch}
+          />
+        </div>
       }
-      <span className="pt-navbar-divider" />
-      <Switch 
-        checked={props.isChooseTheme} 
-        onChange={props.handleChangeTheme} 
-        label="Theme" 
-        inline
-      />
-      <Popover 
-        target={props.target ||  (<Button className="pt-minimal" iconName="user"/>)}
-        content={props.content || (<PopOverContent onClick={props.showUserInfo}/>)}
-        interactionKind={PopoverInteractionKind.CLICK}
-        position={Position.BOTTOM_RIGHT}
-        popoverClassName="pt-popover-content-sizing"
-      />
-    </div>
-    <div className="pt-navbar-group pt-align-right" style={{marginRight: "20px"}}>
-      <div className="pt-navbar-heading">Search</div>
-      <input className="pt-input" placeholder="Search files..." type="text" />
-    </div>
-  </nav>
+
+
+      { !props.isMobile &&
+        <div className="pt-navbar-group " style={{marginRight: "20px"}}>
+          <div className="pt-navbar-heading"><Button className="pt-minimal" iconName="search"/></div>
+          <input className="pt-input" placeholder="Search files..." type="text" />
+        </div>
+      }
+
+      <div className="pt-navbar-group" style={{flex: 1}}>
+        {
+          props.links.map((ele, index)=>{
+            return (
+              <Link key={index} to={ele.href} >
+                <button className={`pt-button pt-minimal pt-icon-${ele.icon}`}>
+                  {ele.label}
+                </button>
+              </Link>
+            );
+          })
+        }
+      </div>
+
+      <div className="pt-navbar-group">
+        <span className="pt-navbar-divider" />
+        <Switch 
+          checked={props.isChooseTheme} 
+          onChange={props.handleChangeTheme} 
+          label="Theme" 
+          inline
+        />
+        <Popover 
+          target={props.target ||  (<Button className="pt-minimal" iconName="user"/>)}
+          content={props.content || (<PopOverContent onClick={props.showUserInfo}/>)}
+          interactionKind={PopoverInteractionKind.CLICK}
+          position={Position.BOTTOM_RIGHT}
+          popoverClassName="pt-popover-content-sizing"
+        />
+      </div>
+      
+    </nav>
+  </div>
 );
+// horizontal-bar-chart-asc
 
 export default NavBar;

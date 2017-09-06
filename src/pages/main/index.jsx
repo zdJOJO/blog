@@ -28,8 +28,11 @@ const Header = observer(() =>
       isChooseTheme={myMainStore.isChooseTheme}
       handleChangeTheme={myMainStore.handleChangeTheme}
       showUserInfo={myMainStore.showUserInfo}
+      showMobileSearch={myMainStore.showMobileSearch}
+      isMobile={myMainStore.isMobile}
+      isShowMobileSearch={myMainStore.isShowMobileSearch}
     />
-    <UserSlider isShowUserInfo={myMainStore.isShowUserInfo} />
+    <UserSlider isShowUserInfo={myMainStore.isShowUserInfo}/>
     {myMainStore.isShowUserInfo && <div className="mask" onClick={()=>{myMainStore.showUserInfo(false)}}/>}
   </div>
 );

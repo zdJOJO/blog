@@ -11,8 +11,7 @@ if (process.env.NODE_ENV !== "production") {
 module.exports = {
 
   entry: {
-    app: "./src/index",
-    common_react: ["react", "react-dom", "react-router", "mobx-react", "mobx"]
+    app: "./src/index"
   },
 
   output: {
@@ -83,6 +82,11 @@ module.exports = {
       }
     }),
 
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require("./manifest.json")
+    }),
+
     new webpack.optimize.UglifyJsPlugin({
       comments: false,        //去掉注释
       compress: {
@@ -90,6 +94,7 @@ module.exports = {
       },
       except: ["$super", "$", "exports", "require"]    //排除关键字
     }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
 
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, "../static/index.html"),
@@ -102,12 +107,7 @@ module.exports = {
       allChunks: true 
     }),
     
-    new webpack.NoEmitOnErrorsPlugin(),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "common_react",
-      minChunks: Infinity
-    })
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 
 };

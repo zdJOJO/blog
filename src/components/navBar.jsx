@@ -32,8 +32,6 @@ const NavBar = ({...props}) => (
       style={props.style}
       className={`pt-navbar .modifier ${props.isChooseTheme ? "pt-dark" : ""}`}
     >
-
-
       { props.isMobile && 
         <div className="pt-navbar-group">
           <div className={`pt-popover-content mobileSearch ${props.isShowMobileSearch ? "show" : ""}`}> 
@@ -49,7 +47,6 @@ const NavBar = ({...props}) => (
           />
         </div>
       }
-
 
       { !props.isMobile &&
         <div className="pt-navbar-group " style={{marginRight: "20px"}}>
@@ -92,6 +89,5 @@ const NavBar = ({...props}) => (
     </nav>
   </div>
 );
-// horizontal-bar-chart-asc
 
 export default NavBar;

@@ -11,8 +11,9 @@ main{
   transition: background-color 0.5s cubic-bezier(1, 0.3, 1, 1);
   width: 100%;
   z-index: 10;
-  // position: relative;
+  right: 0;
   display: flex;
+  position: relative;
 
   .pt-control.pt-switch{
     margin-bottom: 0;

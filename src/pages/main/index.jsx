@@ -18,7 +18,7 @@ const links = [
 
 const showStyle = {
   transition: "all 0.5s ease",
-  paddingRight: "220px"
+  right: "220px"
 };
 const Header = observer(() => 
   <div>

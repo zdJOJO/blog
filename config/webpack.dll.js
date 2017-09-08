@@ -8,6 +8,7 @@ const vendors =[
   "react-router-dom",
   "mobx",
   "mobx-react",
+  "react-markdown",
   "@blueprintjs/core"
 ];
 

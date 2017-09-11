@@ -1,0 +1,26 @@
+.article-title{
+  h3{
+    width: 70%;
+    margin: 0;
+    
+    .pt-editable-text{
+      width: 100%;
+    }
+
+  }
+}
+
+textarea{
+  min-height: 400px;
+}
+
+.pt-input.pt-fill{
+  width: 70%;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 414px ){
+  .pt-input.pt-fill{
+    width: 100%;
+  }
+}

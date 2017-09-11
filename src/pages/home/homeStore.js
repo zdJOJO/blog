@@ -6,7 +6,7 @@ import img3 from "../../img/bk-3.jpg";
 import img4 from "../../img/bk-4.jpg";
 import {hex_sha1} from '../../utils/sha1';
 import myFetch from "../../utils/http";
-import MyToast from "../../components/toast";
+import {MyToast} from "../../components/toast";
 
 class HomeStore {
 

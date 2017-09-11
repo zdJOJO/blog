@@ -2,7 +2,6 @@ node_modules/
 .vscode/
 .idea/
 static/pages/
-static/js/vendor.js
 static/resources/
 static/index.html
 config/manifest.json

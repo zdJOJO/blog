@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongo = require("mongodb").MongoClient;
 const mongoose = require("mongoose");
 
 
@@ -10,8 +9,8 @@ const routes = require("./routes");
 const app = express();
 
 // 设定port变量，意为访问端口
-app.set("port", process.env.PORT || 8080);
-app.set("port", 8080);
+app.set("port", process.env.PORT || 80);
+app.set("port", 80);
 app.use(bodyParser.json({limit: "10mb"}));  //这里指定参数使用 json 格式
 app.use(bodyParser.urlencoded({
   extended: true

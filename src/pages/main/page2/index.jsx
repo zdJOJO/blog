@@ -1,65 +1,56 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import { observer } from "mobx-react";
-import { EditableText, Icon, Intent, Tab2, Tabs2, Button } from "@blueprintjs/core";
-const ReactMarkdown = require('react-markdown');
+import { EditableText, Icon, Intent, Button } from "@blueprintjs/core";
 import myPage2Store from './page2Store';
 import './page2.scss';
 
-const Page2 = () => {
+@observer
+class Page2 extends Component{
 
-  const Write = (
-    <div className="left">
-      <textarea 
-        autoFocus="autofocus"
-        className="pt-intent-primary pt-input pt-fill" 
-        dir="auto" 
-        placeholder="Edit content..."
-        value={myPage2Store.articleCnt}
-        onChange={(event)=>{myPage2Store.handleChange('content', event)}}
-      />
-    </div>
-  );
+  componentDidMount(){
+    myPage2Store.initialEditor(this.refs["editor"][0]);
+  }
 
-  const Preview = (
-    <div className="right">
-      <ReactMarkdown escapeHtml source={myPage2Store.article || 'Nothing to preview'} />
-    </div>
-  );
 
-  return(
-    <div>
-      <div className="article-title">
-        <h3>
-          <EditableText
-            maxLength={200}
-            placeholder="Edit title..."
-            onChange={myPage2Store.handleChange}
+  render(){
+    return(
+      <div>
+
+        <div className="article-title">
+          <h3>
+            <EditableText
+              maxLength={200}
+              placeholder="Edit title..."
+              value={myPage2Store.articleTitle}
+              onChange={myPage2Store.handleTitle}
+            />
+          </h3>
+        </div>
+
+        <div className="article-content">
+          <textarea ref="editor" />
+        </div>
+
+        <div className="buttons">
+          <Button
+            className="pt-minimal"
+            iconName="tick"
+            text="submit"
+            intent={Intent.SUCCESS}
+            onClick={myPage2Store.handleSubmit}
           />
-        </h3>
-      </div>
-      <div className="article-content">
-        <div className="nav"></div>
-        <Tabs2
-          id="Tabs2Example"
-          animate
-          key="horizontal"
-        >
-          <Tab2 id="write" title="Write" panel={Write} />
-          <Tab2 id="preview" title="Preview" panel={Preview} />
-        </Tabs2>
-      </div>
-      <div className="buttons">
-        <Button className="pt-minimal" iconName="tick" text="submit" intent={Intent.SUCCESS} 
-          disabled={!myPage2Store.isAbleToSave}
-        />
-        <Button className="pt-minimal" iconName="cross" text="Clean" intent={Intent.DANGER}/>
-        <Button className="pt-minimal" iconName="saved" text="save" intent={Intent.WARNING}
-          disabled={!myPage2Store.isAbleToSave}
-          onClick={myPage2Store.handleSave}
-        />
-      </div>
-    </div>
-  );
-};
+          <Button
+            className="pt-minimal"
+            iconName="saved"
+            text="save"
+            intent={Intent.WARNING}
+            onClick={myPage2Store.handleSave}
+          />
+        </div>
 
-export default observer(Page2);
+      </div>
+    );
+  }
+}
+
+export default Page2;

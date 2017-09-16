@@ -1,4 +1,8 @@
 .article-title{
+
+  margin: 5px 0 15px 0;
+  padding: 0 5px;
+
   h3{
     width: 70%;
     margin: 0;
@@ -10,14 +14,47 @@
   }
 }
 
-textarea{
-  min-height: 400px;
+.article-content{
+
+  font-size: 15px;
+  max-height: 77vh;
+  overflow: scroll;
+  border: 1px #bbb dashed;
+  border-top: none;
+
+  textarea{
+    outline: none;
+  }
+
+  .editor-toolbar.fullscreen{
+    top: 50px;
+  }
+
+  .CodeMirror-fullscreen{
+    top: 100px;
+  }
+
+  .CodeMirror pre{
+    box-shadow: none;
+  }
+
+  .editor-preview-active, .editor-preview-side{
+    pre{
+      background: #2d2d2d;
+      code{
+        display: block;
+        overflow-x: auto;
+        color: #cccccc;
+        padding: 0.5em;
+      }
+    }
+  }
 }
 
-.pt-input.pt-fill{
-  width: 70%;
-  max-width: 100%;
+.buttons{
+  margin: 3px 10px 10px 0;
 }
+
 
 @media screen and (max-width: 414px ){
   .pt-input.pt-fill{

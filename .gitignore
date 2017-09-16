@@ -4,5 +4,4 @@ node_modules/
 static/pages/
 static/resources/
 static/index.html
-config/manifest.json
 npm-debug.log

@@ -23,7 +23,7 @@ const showStyle = {
 const Header = observer(() => 
   <div>
     <NavBar 
-      style={myMainStore.isShowUserInfo ? showStyle : {paddingRight:　0, transition: "all 0.5s ease"}}
+      style={myMainStore.isShowUserInfo ? showStyle : {right:　0, transition: "all 0.5s ease"}}
       links={links}
       isChooseTheme={myMainStore.isChooseTheme}
       handleChangeTheme={myMainStore.handleChangeTheme}

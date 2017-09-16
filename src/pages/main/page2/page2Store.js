@@ -21,6 +21,7 @@ class Page2Store {
   //保存文章
   handleSave=()=>{
     window.localStorage.setItem(`article`, this.simplemde.value());
+    toast.success('save successfully !');
   };
 
   // 提交文章

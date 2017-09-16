@@ -36,6 +36,7 @@ html, body{
   height: 100%;
   //@include px2px($name:font-size, $px:12);
   font-size: 12px;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::-webkit-scrollbar{
@@ -74,10 +75,15 @@ footer{
   text-align: center;
   box-shadow: 1px 1px hsla(0,0%,100%,.65);
   line-height: 35px;
+  z-index: 2;
 }
 
 footer span{
   padding: 0 0.2rem;
   font-size: 12px;
   color: rgba(177, 177, 177, 0.26);
+}
+
+.pt-toast-message{
+  font-size: 14px;
 }

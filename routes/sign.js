@@ -4,11 +4,12 @@
 
 const userModel = require("../models").userModel;
 const saveCtrl = require("./controller");
+const urls = require("./urls");
 
 module.exports = function(app) {
 
   //注册
-  app.post("/api/signup", (req, res, next) => {
+  app.post(urls.SIGN_UP, (req, res, next) => {
     userModel.findOne({"username": req.body.username}, (err, user)=>{
       if(user){
         res.send({
@@ -31,7 +32,7 @@ module.exports = function(app) {
   });
 
   //登录
-  app.post("/api/login", (req, res) => {
+  app.post(urls.LOGIN, (req, res) => {
     userModel.findOne({"username": req.body.username}, (err, user) => {
       if (!user){
         res.send({

@@ -187,7 +187,7 @@ class HomeStore {
   };
 
   //  注册 || 登录 提交
-  @action handleSubmit = (callback=null) => {
+  @action handleSubmit = (history) => {
     if(!this.toast)
       this.toast = new MyToast("TOP_RIGHT");
     let obj = {};
@@ -210,13 +210,13 @@ class HomeStore {
       this.toast.error("please fill in the correct information", 5000);
       return false;
     }
-    let url = this.isLoginTab ? "/api/login" : "/api/signup";
-    myFetch(url, "post", obj)
+    let url = this.isLoginTab ? "/login" : "/signup";
+    myFetch(url, "post", obj, true)
       .then( json => {
         if(json.status===0){
           if(this.isLoginTab){
             this.toast.success("login success", 2000);
-            callback&&callback();
+            history.push("/main/page1");
           }else {
             this.toast.success("sign up success", 2000);
             this.actionButtons = this.loginButtons;
@@ -228,7 +228,7 @@ class HomeStore {
           this.toast.error(json.msg, 5000, {
             text: "Retry",
             onClick: ()=>{
-              this.handleSubmit(callback);
+              this.handleSubmit(history);
             }
           });
         }

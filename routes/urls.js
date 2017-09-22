@@ -2,14 +2,24 @@
 *  定义路由的 url
 * */
 
-module.exports = Object.freeze({
+module.exports = (function Urls(PUBLIC) {
 
-  // 登录注册
-  SIGN_UP: "/api/signup",
-  LOGIN: "/api/login",
+  this.PUBLIC = PUBLIC;
+  
+  return Object.freeze({
 
-  //文章
-  ARTICLE_CREATE: "/api/article/create",
-  ARTICLE_UPDATE: "/api/article/update"
+    /* 学生*/
+    GET_STUDENT: `${this.PUBLIC}/school/student`,
+    ADD_STUDENT: `${this.PUBLIC}/school/student/add`,
 
-});
+    /* 登录注册*/ 
+    SIGN_UP: `${this.PUBLIC}/signup`,
+    LOGIN: `${this.PUBLIC}/login`,
+
+    /* 文章*/
+    ARTICLE_CREATE: `${this.PUBLIC}/article/create`,
+    ARTICLE_UPDATE: `${this.PUBLIC}/article/update`
+
+  });
+
+})("/api");

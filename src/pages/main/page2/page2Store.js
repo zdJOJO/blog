@@ -35,6 +35,11 @@ class Page2Store {
       toast.error('please fill in the content !');
       return false;
     }
+
+    myFetch(``)
+      .then( json => {
+        
+      });
     console.log(this.simplemde.markdown(`# ${this.articleTitle} \n` + text));
     this.initialArticle();
   };

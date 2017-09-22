@@ -1,7 +1,9 @@
-const myFetch = (url, methodType="get", obj={}) => {
+import {toast} from "../components/toast";
+
+const myFetch = (url, methodType="get", obj={}, customError=false) => {
   return new Promise( (resolve, reject) => {
-    let header = methodType==="get" 
-      ? null 
+    let options = methodType==="get" 
+      ? { credentials: "include" } 
       : {
         method: methodType,
         headers: {
@@ -11,22 +13,35 @@ const myFetch = (url, methodType="get", obj={}) => {
         credentials: "include"
       };
 
-    fetch(url, header)
+    fetch(`/api${url}`, options)
       .then( res =>{
         if(res.ok && res.status===200){
           return res.json();
         }else if(res.status === 401){
-          alert("登录超时");
+          this.toast.warning("login timeout, please login again !", 5000, {
+            text: "Login",
+            onClick: ()=>{
+              console.log(1111);
+            }
+          });
         }else{
           throw new Error(`${res.status}, ${res.statusText}`);
         }
       })
       .then( json =>{
-        resolve(json);
+        if(!customError){
+          if(json.status === 0){
+            resolve(json);
+          }else{
+            this.toast.error(json.msg, 5000);
+          }
+        }else{
+          resolve(json);
+        }
       })
       .catch( e =>{
-        console.log(e);
         reject(e);
+        toast.error(e);
       });
   });
 };

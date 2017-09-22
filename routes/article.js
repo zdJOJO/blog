@@ -3,12 +3,12 @@
 * */
 
 const articleModel = require("../models").articleModel;
-const urls = require("./urls");
+const URLS = require("./urls");
 
 module.exports = function (app) {
 
   // 创建新文章
-  app.post(urls.ARTICLE_CREATE, (req, res, next)=>{
+  app.post(URLS.ARTICLE_CREATE, (req, res, next)=>{
 
   });
 };

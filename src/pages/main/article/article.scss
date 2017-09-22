@@ -1,0 +1,32 @@
+
+
+.articleList{
+
+  .articleItem{
+    
+  }
+}
+
+.articleDetail{
+  pre{
+    font-size: 15px;
+    background: #2d2d2d;
+    code{
+      color: #cccccc;
+    }
+
+  }
+}
+
+
+@media screen and (max-width: 414px){
+  h1{
+    font-size: 25px;
+  }
+
+  .articleDetail{
+    pre{
+      font-size: 13px !important;
+    }
+  }
+}

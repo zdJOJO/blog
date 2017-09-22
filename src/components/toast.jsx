@@ -17,7 +17,7 @@ class MyToast {
     return this.selfToaster.show({message: "... ..."});
   }
 
-  success (msg, delay=3000, action={}) {
+  success (msg, delay=2000, action={}) {
     this.selfToaster.show({
       message: msg,
       iconName: "tick",
@@ -27,7 +27,7 @@ class MyToast {
     });
   }
 
-  error (msg, delay=5000, action={}) {
+  error (msg, delay=4000, action={}) {
     this.selfToaster.show({
       message: msg,
       iconName: "warning-sign",

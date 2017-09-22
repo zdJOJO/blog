@@ -35,8 +35,23 @@ class Page2Store {
       toast.error('please fill in the content !');
       return false;
     }
-    console.log(this.simplemde.markdown(`# ${this.articleTitle} \n` + text));
-    this.initialArticle();
+
+    let obj = {
+      title: this.articleTitle,
+      subtitle: "",
+      content: this.simplemde.markdown(text),
+      pubTime: "",
+      updateTime: "", 
+      tag: [],
+      comments: [],
+      author: ""
+    };
+
+    myFetch(`/article/create`, "post", obj)
+      .then( json => {
+        this.initialArticle();
+        toast.success(json.msg);
+      });
   };
 
 

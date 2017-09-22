@@ -1,10 +1,11 @@
 const studentModel = require("../models").studentModel;
 const saveCtrl = require("./controller");
+const URLS = require("./urls");
 
 module.exports = function(app) {
   
   //获取列表 
-  app.get("/school/student", (req, res)=>{
+  app.get(URLS.GET_STUDENT, (req, res)=>{
     studentModel.find((err, docs)=>{
       res.send({
         result: {
@@ -17,7 +18,7 @@ module.exports = function(app) {
   });
 
   //添加学生
-  app.post("/school/student/add", (req, res)=>{
+  app.post(URLS.ADD_STUDENT, (req, res)=>{
     saveCtrl.handleSave(req.body, studentModel, (err, entity)=>{
       res.send({
         result: err || entity,

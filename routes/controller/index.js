@@ -1,6 +1,6 @@
 
 /*
-  数据的 CRUD 操作
+  数据库的 CRUD 操作
 */
 
 module.exports = { 

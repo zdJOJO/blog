@@ -3,20 +3,18 @@
 */
 
 const studentRoute = require("./student"); 
-const sign = require("./sign"); 
+const sign = require("./sign");
+const article = require("./article");
 
 module.exports = function (app){
-
-  app.get("/hello", (req, res)=>{
-    res.send("Hellow World !!");
-  });
 
   //登录注册
   sign(app);
 
+  // 发表文章
+  article(app);
+
+  //学生
   studentRoute(app);
 
-  app.get("/teacher", (req, res)=>{
-    res.send("teacher !!");
-  });
 };

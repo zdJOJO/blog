@@ -54,11 +54,7 @@ class Home extends Component{
           buttons={this.myHomeStore.actionButtons}
           onChange={this.myHomeStore.handleChange}
           onBlur={this.myHomeStore.handleBlur}
-          onSubmit={()=>{
-            this.myHomeStore.handleSubmit(()=>{
-              this.props.history.push("/main/page1");
-            });
-          }}
+          onSubmit={()=>{this.myHomeStore.handleSubmit(this.props.history)}}
           onKeyUp={this.handleKeyUp}
           onHide={this.handleClose}
           {...this.myHomeStore.initalState}

@@ -3,16 +3,26 @@ import {observer} from "mobx-react";
 import {Switch, Route } from "react-router-dom";
 
 import { createComponent } from "../../routes/routes";
+
 import Page1 from "bundle-loader?lazy&name=page1!./page1";
 import Page2 from "bundle-loader?lazy&name=page2!./page2";
+import Article from "bundle-loader?lazy&name=article!./article";
+import ArticleDetail from "bundle-loader?lazy&name=articleDetail!./article/detail";
+
 import NavBar from "../../components/navBar";
 import UserSlider from "../../components/userSlider";
 import myMainStore from "./mainStore";
 import "./main.scss";
 
 const links = [
-  { href: "/main/page1", icon: "manual", label: "Page1" },
-  { href: "/main/page2", icon: "inbox", label: "Page2" }
+  { href: "/main/page1", icon: "people", label: "Student" },
+  { href: "/main/articles", icon: "manual", label: "Article" },
+  { href: "/main/page2", icon: "highlight", label: "Create" },
+
+  { href: "/main/articles", icon: "manual", label: "Article" },
+  { href: "/main/articles", icon: "manual", label: "Article" },
+  { href: "/main/articles", icon: "manual", label: "Article" },
+  { href: "/main/articles", icon: "manual", label: "Article" }
 ];
 
 
@@ -42,6 +52,8 @@ const MainContent = () => (
     <Switch>
       <Route path="/main/page1" component={createComponent(Page1)} />
       <Route path="/main/page2" component={createComponent(Page2)} />
+      <Route path="/main/articles" component={createComponent(Article)} />
+      <Route path="/main/article/:id" component={createComponent(ArticleDetail)} />
     </Switch>
   </main>
 );

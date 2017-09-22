@@ -12,7 +12,7 @@ module.exports = {
 
   articleSchema: new mongoose.Schema({
     title: {type: String, required: true},  //文章标题
-    subtitle: {type: String, required: true},  //文章副标题
+    subtitle: String,  //文章副标题
     content: {type: String, required: true},  //文章内容
     pubTime: Date, // 发布时间
     updateTime: Date, // 更新时间

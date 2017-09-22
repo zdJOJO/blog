@@ -46,6 +46,7 @@ main{
 
   .pt-navbar-group {
     width: 93%;
+    overflow-x: scroll;
     margin: 5px auto 0 auto;
   }
 }
@@ -162,6 +163,7 @@ main{
   .pt-navbar{
     padding: 0 5px;
     .pt-navbar-group{
+      overflow-x: scroll;
       a{
         display: flex;
       }

@@ -18,7 +18,9 @@ module.exports = (function Urls(PUBLIC) {
 
     /* 文章*/
     ARTICLE_CREATE: `${this.PUBLIC}/article/create`,
-    ARTICLE_UPDATE: `${this.PUBLIC}/article/update`
+    ARTICLE_UPDATE: `${this.PUBLIC}/article/update`,
+    ARTICLE_GET_LIST: `${this.PUBLIC}/article/list`,
+    ARTICLE_GET_DETAIL: `${this.PUBLIC}/article/:id`
 
   });
 

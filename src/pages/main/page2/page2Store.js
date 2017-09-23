@@ -40,7 +40,7 @@ class Page2Store {
       title: this.articleTitle,
       subtitle: "",
       content: this.simplemde.markdown(text),
-      pubTime: "",
+      pubTime: new Date(),
       updateTime: "", 
       tag: [],
       comments: [],
@@ -68,6 +68,7 @@ class Page2Store {
 
   //初始化 文章
   initialArticle=()=>{
+    window.localStorage.setItem("article", "");
     this.handleTitle('');
     this.simplemde.value("");
   };

@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import { observer } from "mobx-react";
-import { Route, Link } from "react-router-dom";
-// import { EditableText, Icon, Intent, Button } from "@blueprintjs/core";
+import { withRouter } from "react-router-dom";
 import { createComponent } from "../../../routes/routes";
 import store from './store';
+import {myTimeFormat} from '../../../utils';
 import './article';
 
 @observer
@@ -20,11 +20,28 @@ class Article extends Component{
           {
             store.articleList.map((article, index)=>{
               return(
-                <Link to={`/main/article/${article._id}`} key={article._id}>
-                  <div className="articleItem"> 
-                    <h1>{article.title}</h1>
+                <section 
+                  className="articleItem" 
+                  key={article._id} 
+                  onClick={()=>{
+                    this.props.history.push(`/main/article/${article._id}`);
+                  }}
+                > 
+                  <div className="sunmmary">
+                    <h2>{article.title}</h2>
+                    <div className="author">
+                      <span>{article.title}</span>
+                      <span>{article.author.nickname}</span><br/>
+                      <span>
+                        {myTimeFormat.someTimeAgo(article.pubTime)}<br/>
+                      </span>
+                    </div>
+                    <p className="content"></p>
                   </div>
-                </Link>
+                  <div className="tag">
+
+                  </div>
+                </section>
               );
             })
           }
@@ -34,4 +51,4 @@ class Article extends Component{
   }
 }
 
-export default Article;
+export default withRouter(Article);

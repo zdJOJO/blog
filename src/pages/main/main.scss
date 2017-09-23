@@ -164,6 +164,11 @@ main{
     padding: 0 5px;
     .pt-navbar-group{
       overflow-x: scroll;
+
+      ::-webkit-scrollbar{
+        display: none;
+      }
+      
       a{
         display: flex;
       }

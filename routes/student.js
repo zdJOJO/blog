@@ -1,4 +1,4 @@
-const studentModel = require("../models").studentModel;
+const studentModel = require("../schemas").studentModel;
 const saveCtrl = require("./controller");
 const URLS = require("./urls");
 

@@ -1,18 +1,29 @@
 
 
 .articleList{
+  font-size: 16px;
 
   .articleItem{
-    
+
+    margin-bottom: 20px;
+    line-height: 20px;
+
+    h2{
+      display: inline;
+      margin: 0 5px 0 0;
+      font-size: 16px;
+    }
   }
 }
 
 .articleDetail{
   pre{
+    overflow-x: scroll;
     font-size: 15px;
     background: #2d2d2d;
     code{
       color: #cccccc;
+      white-space: unset;
     }
 
   }

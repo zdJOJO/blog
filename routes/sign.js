@@ -2,7 +2,7 @@
   登录、注册
 */
 
-const userModel = require("../models").userModel;
+const userModel = require("../schemas").userModel;
 const saveCtrl = require("./controller");
 const URLS = require("./urls");
 

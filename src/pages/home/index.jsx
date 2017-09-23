@@ -41,7 +41,7 @@ class Home extends Component{
           })
         }
         <Button className="pt-minimal enterBtn" rightIconName="direction-right">
-          <Link to="/main/page1">进入博客</Link>
+          <Link to="/main/articles">进入博客</Link>
         </Button>
         <Icon className="login" iconName="user"
           onClick={()=>{this.myHomeStore.showLoginModal(true)}}

@@ -15,7 +15,7 @@ import myMainStore from "./mainStore";
 import "./main.scss";
 
 const links = [
-  { href: "/main/page1", icon: "people", label: "Student" },
+  // { href: "/main/page1", icon: "people", label: "Student" },
   { href: "/main/articles", icon: "manual", label: "Article" },
   { href: "/main/page2", icon: "highlight", label: "Create" },
 

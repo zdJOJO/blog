@@ -14,10 +14,10 @@ class ArticleDetail extends Component{
 
   render(){
     return(
-      <div className="articleDetail"> 
+      <article className="articleDetail"> 
         <h1>{store.articleDetail.title}</h1>
         <div dangerouslySetInnerHTML={{__html: store.articleDetail.content}} />
-      </div>
+      </article>
     );
   }
 }

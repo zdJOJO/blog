@@ -216,7 +216,7 @@ class HomeStore {
         if(json.status===0){
           if(this.isLoginTab){
             this.toast.success("login success", 2000);
-            history.push("/main/page1");
+            history.push("/main/articles");
           }else {
             this.toast.success("sign up success", 2000);
             this.actionButtons = this.loginButtons;

@@ -2,8 +2,8 @@ import {toast} from "../components/toast";
 
 const myFetch = (url, methodType="get", obj={}, customError=false) => {
   return new Promise( (resolve, reject) => {
-    let options = methodType==="get" 
-      ? { credentials: "include" } 
+    let options = methodType==="get"
+      ? { credentials: "include" }
       : {
         method: methodType,
         headers: {
@@ -25,23 +25,25 @@ const myFetch = (url, methodType="get", obj={}, customError=false) => {
             }
           });
         }else{
-          throw new Error(`${res.status}, ${res.statusText}`);
+          toast.error(`${res.status}, ${res.statusText}`);
+          reject(`${res.status}, ${res.statusText}`);
         }
       })
       .then( json =>{
-        if(!customError){
-          if(json.status === 0){
-            resolve(json);
+        if(json)
+          if(!customError){
+            if(json.status === 0){
+              resolve(json);
+            }else{
+              this.toast.error(json.msg, 5000);
+            }
           }else{
-            this.toast.error(json.msg, 5000);
+            resolve(json);
           }
-        }else{
-          resolve(json);
-        }
       })
       .catch( e =>{
-        reject(e);
         toast.error(e);
+        reject(e);
       });
   });
 };

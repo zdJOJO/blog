@@ -1,9 +1,5 @@
 import {observable, action, computed} from "mobx";
 
-import img1 from "../../img/bk-1.jpg";
-import img2 from "../../img/bk-2.jpg";
-import img3 from "../../img/bk-3.jpg";
-import img4 from "../../img/bk-4.jpg";
 import {hex_sha1} from '../../utils/sha1';
 import myFetch from "../../utils/http";
 import {MyToast} from "../../components/toast";
@@ -13,7 +9,15 @@ class HomeStore {
   toast; // 弹框
   timer;
   num = 0;
-  imgList = [img2, img1, img3, img4];
+  imgList = [
+    "/static/img/bk-1.jpg",
+    "/static/img/bk-2.jpg",
+    "/static/img/bk-3.jpg",
+    "/static/img/bk-4.jpg",
+    "/static/img/bk-5.jpg",
+    "/static/img/bk-7.jpg",
+    "/static/img/bk-6.jpg"
+  ];
 
   initalState = {
     autoFocus: true,
@@ -144,10 +148,11 @@ class HomeStore {
   };
 
   @action changeImg =()=>{
+    let len = this.imgList.length;
     this.timer = setInterval(()=>{
       this.num ++ ;
-      this.imgIndex  = this.num % 4;
-    }, 8000);
+      this.imgIndex = this.num % len;
+    }, 10000);
   };
 
   @action showLoginModal =(bool)=>{

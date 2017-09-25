@@ -1,28 +1,81 @@
 .home{
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  height: 95vh;
   position: relative;
 
-  .imgList{
-    position: fixed;
+  .imgItem{
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
-    height: 100%;
+    height: 95vh;
     min-width: 1500px;
     margin: auto;
     visibility: visible;
     background-size: 100%;
-    -webkit-transition: opacity 1s cubic-bezier(0,0,1,0.47);
-    -moz-transition: opacity 1s cubic-bezier(0,0,1,0.47);
-    -o-transition: opacity 1s cubic-bezier(0,0,1,0.47);
-    transition: opacity 1s cubic-bezier(0,0,1,0.47);
     opacity: 0;
+
+    .bubblingG {
+      text-align: center;
+      width:78px;
+      height:49px;
+      margin: auto;
+      position: absolute;
+      left: 50%;
+      top: 35vh;
+      margin-left: -39px;
+    }
+    
+    .bubblingG span {
+      display: inline-block;
+      vertical-align: middle;
+      width: 10px;
+      height: 10px;
+      margin: 24px auto;
+      background: rgb(0,0,0);
+      border-radius: 49px;
+      -o-border-radius: 49px;
+      -ms-border-radius: 49px;
+      -webkit-border-radius: 49px;
+      -moz-border-radius: 49px;
+      animation: bubblingG 1.5s infinite alternate;
+      -o-animation: bubblingG 1.5s infinite alternate;
+      -ms-animation: bubblingG 1.5s infinite alternate;
+      -webkit-animation: bubblingG 1.5s infinite alternate;
+      -moz-animation: bubblingG 1.5s infinite alternate;
+    }
+    
+    #bubblingG_1 {
+      animation-delay: 0s;
+        -o-animation-delay: 0s;
+        -ms-animation-delay: 0s;
+        -webkit-animation-delay: 0s;
+        -moz-animation-delay: 0s;
+    }
+    
+    #bubblingG_2 {
+      animation-delay: 0.45s;
+        -o-animation-delay: 0.45s;
+        -ms-animation-delay: 0.45s;
+        -webkit-animation-delay: 0.45s;
+        -moz-animation-delay: 0.45s;
+    }
+    
+    #bubblingG_3 {
+      animation-delay: 0.9s;
+        -o-animation-delay: 0.9s;
+        -ms-animation-delay: 0.9s;
+        -webkit-animation-delay: 0.9s;
+        -moz-animation-delay: 0.9s;
+    }
+    
   }
 
   @media screen and (max-width: 414px) {
-    .imgList{
+    .imgItem{
       background-size: 85% !important;
-      background-position-x: -11rem !important;
+      background-position-x: -75vh !important;
     }
   }
 
@@ -74,4 +127,85 @@
     color: #fafafa;
   }
 
+}
+
+
+@keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color:rgb(0,0,0);
+    transform: translateY(0);
+  }
+
+  100% {
+    width: 23px;
+    height: 23px;
+    background-color:rgba(255,255,255,0.98);
+    transform: translateY(-20px);
+  }
+}
+
+@-o-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color:rgb(0,0,0);
+    -o-transform: translateY(0);
+  }
+
+  100% {
+    width: 23px;
+    height: 23px;
+    background-color:rgba(255,255,255,0.98);
+    -o-transform: translateY(-20px);
+  }
+}
+
+@-ms-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color:rgb(0,0,0);
+    -ms-transform: translateY(0);
+  }
+
+  100% {
+    width: 23px;
+    height: 23px;
+    background-color:rgba(255,255,255,0.98);
+    -ms-transform: translateY(-20px);
+  }
+}
+
+@-webkit-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color:rgb(0,0,0);
+    -webkit-transform: translateY(0);
+  }
+
+  100% {
+    width: 23px;
+    height: 23px;
+    background-color:rgba(255,255,255,0.98);
+    -webkit-transform: translateY(-20px);
+  }
+}
+
+@-moz-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color:rgb(0,0,0);
+    -moz-transform: translateY(0);
+  }
+
+  100% {
+    width: 23px;
+    height: 23px;
+    background-color:rgba(255,255,255,0.98);
+    -moz-transform: translateY(-20px);
+  }
 }

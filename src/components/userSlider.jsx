@@ -1,13 +1,12 @@
 import React from "react";
 import { Position, Intent, Tag, Tooltip } from "@blueprintjs/core";
 import MyIcon from '../components/myIcon';
-import headPic from '../img/default.jpg';
 
 const UserSlider = ({...props}) =>{
   return(
     <div className={props.isShowUserInfo ? "userSlider show" : "userSlider"}>
       <div className="head">
-        <img src={headPic}/>
+        <img src="/static/img/default.jpg"/>
       </div>
       <p className="nickname">一代大神</p>
       <p className="occupation">华尔街金融巨鳄</p>

@@ -5,6 +5,7 @@ import { observer } from "mobx-react";
 import { Button, Icon } from "@blueprintjs/core";
 
 import FormModal from '../../components/formModal';
+import ImgItem from './imgItem';
 import HomeStore from "./homeStore";
 
 import "./home.scss";
@@ -26,17 +27,14 @@ class Home extends Component{
     return(                 
       <div className="home">
         {
-          this.myHomeStore.imgList.map((ele, index)=>{
-            const style = {
-              background: `url(${ele}) no-repeat`,
-              opacity: index===this.myHomeStore.imgIndex ? 1 : 0
-            };
+          this.myHomeStore.imgList.map((imgUrl, index)=>{
             return(
-              <div
+              <ImgItem 
                 key={index} 
-                className="imgList"
-                style={style} 
-              />
+                store={this.myHomeStore} 
+                imgUrl={imgUrl} 
+                index={index}
+              />  
             );
           })
         }

@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 
-let port = 3000; 
+let port = 3000;
 
 module.exports = {
 

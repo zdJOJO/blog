@@ -15,6 +15,7 @@
     visibility: visible;
     background-size: 100%;
     opacity: 0;
+    transition: opacity 1s cubic-bezier(0,0,1,0.47);
 
     .bubblingG {
       text-align: center;

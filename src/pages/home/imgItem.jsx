@@ -6,7 +6,7 @@ class ImgItem extends Component{
 
   state = {
     loaded : false
-  }
+  };
 
   componentDidMount(){
     const img = new Image();

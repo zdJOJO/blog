@@ -32,7 +32,7 @@ class Home extends Component{
               <ImgItem 
                 key={index} 
                 store={this.myHomeStore} 
-                imgUrl={imgUrl} 
+                imgUrl={process.env.NODE_ENV === "production" ? imgUrl : `/static/${imgUrl}`}
                 index={index}
               />  
             );

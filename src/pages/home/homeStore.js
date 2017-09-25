@@ -10,13 +10,13 @@ class HomeStore {
   timer;
   num = 0;
   imgList = [
-    "/static/img/bk-1.jpg",
-    "/static/img/bk-2.jpg",
-    "/static/img/bk-3.jpg",
-    "/static/img/bk-4.jpg",
-    "/static/img/bk-5.jpg",
-    "/static/img/bk-7.jpg",
-    "/static/img/bk-6.jpg"
+    "/img/bk-1.jpg",
+    "/img/bk-2.jpg",
+    "/img/bk-3.jpg",
+    "/img/bk-4.jpg",
+    "/img/bk-5.jpg",
+    "/img/bk-7.jpg",
+    "/img/bk-6.jpg"
   ];
 
   initalState = {

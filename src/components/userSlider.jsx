@@ -3,10 +3,11 @@ import { Position, Intent, Tag, Tooltip } from "@blueprintjs/core";
 import MyIcon from '../components/myIcon';
 
 const UserSlider = ({...props}) =>{
+  let imgUrl = process.env.NODE_ENV === "production" ? "/img/default.jpg" : `/static/img/default.jpg`;
   return(
     <div className={props.isShowUserInfo ? "userSlider show" : "userSlider"}>
       <div className="head">
-        <img src="/static/img/default.jpg"/>
+        <img src={imgUrl}/>
       </div>
       <p className="nickname">一代大神</p>
       <p className="occupation">华尔街金融巨鳄</p>

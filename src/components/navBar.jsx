@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 import { 
   Button, Switch, Position, Icon,
   Popover, PopoverInteractionKind, Menu, MenuDivider, MenuItem
@@ -90,4 +91,4 @@ const NavBar = ({...props}) => (
   </div>
 );
 
-export default NavBar;
+export default observer(NavBar);

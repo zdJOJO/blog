@@ -14,6 +14,15 @@ import UserSlider from "../../components/userSlider";
 import myMainStore from "./mainStore";
 import "./main.scss";
 
+
+const Footer = () => (
+  <footer>
+    <span>© 2017 zdJOJO</span>
+    <span>年轻人稳重一点</span>
+    <span>不要一言不合就开车</span>
+  </footer>
+);
+
 const links = [
   // { href: "/main/page1", icon: "people", label: "Student" },
   { href: "/main/articles", icon: "manual", label: "Article" },
@@ -62,6 +71,7 @@ const Main = () => (
   <div>
     <Header />
     <MainContent />
+    <Footer />
   </div>
 );
 

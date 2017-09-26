@@ -23,16 +23,36 @@ class Home extends Component{
     this.myHomeStore.showLoginModal(false);
   };
 
+  defaultImgItem() {
+    const style = {
+      width: this.myHomeStore.loadedImgNum === this.myHomeStore.imgList.length ? 0 : "100%",
+      opacity: this.myHomeStore.loadedImgNum === this.myHomeStore.imgList.length ? 0 : 1
+    };
+    return(
+      <div className="mask" style={style}>
+        <div className="bubblingG">
+          <span id="bubblingG_1">
+          </span>
+          <span id="bubblingG_2">
+          </span>
+          <span id="bubblingG_3">
+          </span>
+        </div>
+      </div>
+    );
+  } 
+
   render(){
     return(                 
       <div className="home">
+        { this.defaultImgItem() }
         {
-          this.myHomeStore.imgList.map((imgUrl, index)=>{
+          this.myHomeStore.imgList.map((img, index)=>{
             return(
               <ImgItem 
                 key={index} 
                 store={this.myHomeStore} 
-                imgUrl={process.env.NODE_ENV === "production" ? imgUrl : `/static/${imgUrl}`}
+                img={img}
                 index={index}
               />  
             );

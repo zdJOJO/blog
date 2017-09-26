@@ -4,16 +4,8 @@ import {Switch, Route, Redirect } from "react-router-dom";
 import "../../style.scss";
 
 import { createComponent } from "../../routes/routes";
-import Home from "bundle-loader?lazy&name=hello!../home";
+import Home from "bundle-loader?lazy&name=home!../home";
 import Main from "bundle-loader?lazy&name=main!../main";
-
-const Footer = () => (
-  <footer>
-    <span>© 2017 zdJOJO</span>
-    <span>年轻人稳重一点</span>
-    <span>不要一言不合就开车</span>
-  </footer>
-);
 
 const App = () => (
   <div>
@@ -22,7 +14,6 @@ const App = () => (
       <Route path="/main" component={createComponent(Main)} />
       <Redirect from="*" to="/main/page1" />
     </Switch>
-    <Footer />
   </div>
 );
 

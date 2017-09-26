@@ -9,15 +9,6 @@ class HomeStore {
   toast; // 弹框
   timer;
   num = 0;
-  imgList = [
-    "/img/bk-1.jpg",
-    "/img/bk-2.jpg",
-    "/img/bk-3.jpg",
-    "/img/bk-4.jpg",
-    "/img/bk-5.jpg",
-    "/img/bk-7.jpg",
-    "/img/bk-6.jpg"
-  ];
 
   initalState = {
     autoFocus: true,
@@ -134,8 +125,33 @@ class HomeStore {
   // 必填项： 数据是否合法
   @observable isRequiredDataLegal = false;
 
+  //图片
+  @observable imgList = [
+    {path: "/img/bk-1.jpg", style: { transition: null} },
+    {path: "/img/bk-2.jpg", style: { transition: null} },
+    {path: "/img/bk-3.jpg", style: { transition: null} },
+    {path: "/img/bk-4.jpg", style: { transition: null} },
+    {path: "/img/bk-5.jpg", style: { transition: null} },
+    {path: "/img/bk-6.jpg", style: { transition: null} },
+    {path: "/img/bk-7.jpg", style: { transition: null} }
+  ];
+
+  // 显示第几张 img
   @observable imgIndex = 0;
+  
+  // 已经加载了几张 img
+  @observable loadedImgNum = 0;
+
   @observable loginModalShow = false;
+
+
+  // img load 完成
+  @action imgLoaded =(index)=>{
+    this.imgList[index].style = {
+      transition: "opacity 1s cubic-bezier(0,0,1,0.47)"
+    };
+    ++this.loadedImgNum;
+  };
 
   //存储 登录
   loginInfo = observable.map({});
@@ -152,7 +168,7 @@ class HomeStore {
     this.timer = setInterval(()=>{
       this.num ++ ;
       this.imgIndex = this.num % len;
-    }, 10000);
+    }, 8000);
   };
 
   @action showLoginModal =(bool)=>{

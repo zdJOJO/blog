@@ -15,12 +15,11 @@
 }
 
 .article-content{
-
   font-size: 15px;
-  max-height: 77vh;
+  max-height: calc(77vh - 5vh);
   overflow: scroll;
   border: 1px #bbb dashed;
-  border-top: none;
+  // border-top: none;
 
   textarea{
     outline: none;

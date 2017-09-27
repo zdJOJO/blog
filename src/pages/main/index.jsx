@@ -12,6 +12,7 @@ import ArticleDetail from "bundle-loader?lazy&name=articleDetail!./article/detai
 import NavBar from "../../components/navBar";
 import UserSlider from "../../components/userSlider";
 import myMainStore from "./mainStore";
+import {myCookie} from "../../utils";
 import "./main.scss";
 
 
@@ -51,7 +52,7 @@ const Header = observer(() =>
       isMobile={myMainStore.isMobile}
       isShowMobileSearch={myMainStore.isShowMobileSearch}
     />
-    <UserSlider isShowUserInfo={myMainStore.isShowUserInfo}/>
+    <UserSlider isShowUserInfo={myMainStore.isShowUserInfo} userInfo={myCookie.getCookie("userInfo")}/>
     {myMainStore.isShowUserInfo && <div className="mask" onClick={()=>{myMainStore.showUserInfo(false)}}/>}
   </div>
 );

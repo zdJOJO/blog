@@ -1,5 +1,5 @@
 import {observable, action} from "mobx";
-import myFetch from "../../../utils/http";
+import http from "../../../utils/http";
 
 class Page1Store {
  
@@ -33,27 +33,25 @@ class Page1Store {
   
   //获取studen列表
   @action getStudentList = ()=>{
-    myFetch("/school/student")
+    http.get("/school/student")
       .then( json => {
         this.studentList = json.result.data;
       });
-  }
+  };
 
   @action handleChange = (key, event) => {
     this.studentInfoMap.set(key, event.target.value);
-  }
+  };
 
   @action handleSubmit = () => {
     let obj = {};
     this.studentInfoMap.forEach((value, key)=>{
       obj[key] = value;
     });
-    myFetch("/school/student/add", "post", obj)
+    http.post("/school/student/add", obj)
       .then( json => {
-        if(json.status === 0){
-          this.studentList.push(json.result);
-          this.inital();
-        }
+        this.studentList.push(json.result);
+        this.inital();
       });
   }
 }

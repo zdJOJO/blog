@@ -1,8 +1,5 @@
 import {observable, action, computed} from "mobx";
-import myFetch from "../../../utils/http";
-
-import http from "../../../utils/aaa";
-
+import http from "../../../utils/http";
 import SimpleMDE  from 'simplemde';
 import editorConfig from "../../../utils/editorConfig";
 import {toast} from "../../../components/toast";
@@ -28,7 +25,7 @@ class Page2Store {
   };
 
   // 提交文章
-  @action handleSubmit=()=>{
+  @action handleSubmit=(history)=>{
     let text = this.simplemde.value();
     if(!this.articleTitle){
       toast.error('please fill in the article title !');
@@ -50,16 +47,16 @@ class Page2Store {
       author: ""
     };
 
-    // myFetch(`/article/create`, "post", obj)
-    //   .then( json => {
-    //     this.initialArticle();
-    //     toast.success(json.msg);
-    //   });
-
     http.post(`/article/create`, obj, true)
       .then( json => {
         if(json.status === -1){
-          toast.error(json.msg);
+          toast.error(json.msg, 10000, {
+            iconName: "right",
+            text: "login",
+            onClick: ()=>{
+              history.push("/");
+            }
+          });
         }else{
           this.initialArticle();
           toast.success(json.msg);

@@ -1,6 +1,5 @@
 import {observable, action, computed} from "mobx";
-import myFetch from "../../../utils/http";
-import {toast} from "../../../components/toast";
+import http from "../../../utils/http";
 
 class ArticleStore {
 
@@ -21,7 +20,7 @@ class ArticleStore {
 
   /* 获取文章列表  */
   @action getList =()=>{
-    myFetch("/article/list")
+    http.get("/article/list")
       .then( json => {
         this.articleList = json.result.data;
       });
@@ -29,7 +28,7 @@ class ArticleStore {
 
   /* 获取文章列表  */
   @action getDetail =(id)=>{
-    myFetch(`/article/${id}`)
+    http.get(`/article/${id}`)
       .then( json => {
         this.articleDetail = json.result;
       });

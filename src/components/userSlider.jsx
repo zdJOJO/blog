@@ -9,8 +9,8 @@ const UserSlider = ({...props}) =>{
       <div className="head">
         <img src={imgUrl}/>
       </div>
-      <p className="nickname">一代大神</p>
-      <p className="occupation">华尔街金融巨鳄</p>
+      <p className="nickname">{props.userInfo.nickname || "set your nickname"}</p>
+      <p className="occupation">{props.userInfo.des || "set your individuality signature"}</p>
       <div className="tagList">
         <Tag className="pt-active .modifier" intent={Intent.PRIMARY} >大神</Tag>
         <Tag className="pt-active .modifier" intent={Intent.PRIMARY} >大神大神</Tag>
@@ -24,31 +24,39 @@ const UserSlider = ({...props}) =>{
           <MyIcon faIconName="envelope-o"/>
           <Tooltip
             className="pt-tooltip-indicator"
-            content={<span>BRRAAAIINS</span>}
+            content={<span>{props.userInfo.email || "set your email"}</span>}
             inline={true}
             intent={Intent.PRIMARY}
             position={Position.BOTTOM}
-          >12312@qwe.com</Tooltip>
+          >{props.userInfo.email || "set your email address"}</Tooltip>
         </li>
         <li>
-          <MyIcon iconName="comment"/>
+          <MyIcon faIconName="facebook-square"/>
           <Tooltip
             className="pt-tooltip-indicator"
-            content={<span>BRRAAAIINS</span>}
+            content={<span>{props.userInfo.github || "set your facebook address"}</span>}
             inline={true}
             intent={Intent.PRIMARY}
             position={Position.BOTTOM}
-          >12312@qwe.com</Tooltip>
+          >
+            <a href={props.userInfo.github || "set your facebook address"} target="_blank">
+              {props.userInfo.github || "set your facebook address"}
+            </a>
+          </Tooltip>
         </li>
         <li>
           <MyIcon faIconName="github"/>
           <Tooltip
             className="pt-tooltip-indicator"
-            content={<span>BRRAAAIINS</span>}
+            content={<span>{props.userInfo.github || "set your github address"}</span>}
             inline={true}
             intent={Intent.PRIMARY}
             position={Position.BOTTOM}
-          ><a>github</a></Tooltip>
+          >
+            <a href={props.userInfo.github || "set your github address"} target="_blank">
+              {props.userInfo.github || "set your github address"}
+            </a>
+          </Tooltip>
         </li>
       </ul>
     </div>

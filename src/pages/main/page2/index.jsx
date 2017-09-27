@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 import { EditableText, Icon, Intent, Button } from "@blueprintjs/core";
 import myPage2Store from './page2Store';
@@ -37,7 +38,7 @@ class Page2 extends Component{
             iconName="tick"
             text="submit"
             intent={Intent.SUCCESS}
-            onClick={myPage2Store.handleSubmit}
+            onClick={()=>{myPage2Store.handleSubmit(this.props.history)}}
           />
           <Button
             className="pt-minimal"
@@ -53,4 +54,5 @@ class Page2 extends Component{
   }
 }
 
-export default Page2;
+// export default Page2;
+export default withRouter(Page2);

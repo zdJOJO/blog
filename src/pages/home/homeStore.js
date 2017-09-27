@@ -1,7 +1,8 @@
 import {observable, action, computed} from "mobx";
 
 import {hex_sha1} from '../../utils/sha1';
-import myFetch from "../../utils/http";
+import http from "../../utils/http";
+import {myCookie} from "../../utils";
 import {MyToast} from "../../components/toast";
 
 class HomeStore {
@@ -232,11 +233,13 @@ class HomeStore {
       return false;
     }
     let url = this.isLoginTab ? "/login" : "/signup";
-    myFetch(url, "post", obj, true)
+    http.post(url, obj, true)
       .then( json => {
         if(json.status===0){
           if(this.isLoginTab){
             this.toast.success("login success", 2000);
+            myCookie.setCookie("token", json.token);
+            myCookie.setCookie("userInfo", json.result);
             history.push("/main/articles");
           }else {
             this.toast.success("sign up success", 2000);

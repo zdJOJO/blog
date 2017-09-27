@@ -1,51 +1,72 @@
 import {toast} from "../components/toast";
 
-const myFetch = (url, methodType="get", obj={}, customError=false) => {
-  return new Promise( (resolve, reject) => {
-    let options = methodType==="get"
-      ? { credentials: "include" }
-      : {
-        method: methodType,
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(obj),
-        credentials: "include"
-      };
+const methods = ["get", "post", "put", "delete"]; 
+const pulicPath = "/api";
 
-    fetch(`/api${url}`, options)
-      .then( res =>{
-        if(res.ok && res.status===200){
-          return res.json();
-        }else if(res.status === 401){
-          this.toast.warning("login timeout, please login again !", 5000, {
-            text: "Login",
-            onClick: ()=>{
-              console.log(1111);
-            }
-          });
-        }else{
-          toast.error(`${res.status}, ${res.statusText}`);
-          reject(`${res.status}, ${res.statusText}`);
-        }
-      })
-      .then( json =>{
-        if(json)
-          if(!customError){
-            if(json.status === 0){
-              resolve(json);
-            }else{
-              this.toast.error(json.msg, 5000);
-            }
-          }else{
-            resolve(json);
-          }
-      })
-      .catch( e =>{
-        toast.error(e);
-        reject(e);
-      });
-  });
+/* 使用fetch  异步*/
+const myFetch = (url, options)=> {
+  return fetch(url, options)
+    .then( res => {
+      if(res.status===200){
+        return res.json();
+      }else if(res.status === 401){
+        return res.json();
+      }else {
+        toast.error(`${res.status}, ${res.statusText}`);
+        return Promise.reject(`${res.status}, ${res.statusText}`);
+      }
+    })
+    .then( json => {
+      return Promise.resolve(json);
+    })
+    .catch( e => {
+      return Promise.reject(e);
+    });
 };
 
-export default myFetch;
+class ClientHttp {
+  constructor(){
+
+    this.options = {};
+
+    methods.forEach( method => {
+      this[method] = (url, _body, _customError=false) => new Promise((resolve, reject)=>{
+        this.options = {
+          method: method,
+          credentials: "include"  //带上cookie
+        };
+        if(method !== "get"){
+          this.options = {
+            ...this.options,
+            body: JSON.stringify(_body),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          };
+        }
+
+        myFetch(`${pulicPath}${url}`, this.options)
+          .then( json => {
+            if(_customError){
+              resolve(json);
+            }else{
+              if(json.status === -1){
+                toast.error(json.msg);
+                reject(json.msg);
+              }else{
+                resolve(json);
+              }
+            }
+          })
+          .catch( e => {
+            console.log(e);
+            reject(e);
+          });
+
+      });
+    });
+  }
+};
+
+const http = new ClientHttp();
+export default http;

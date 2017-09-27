@@ -1,5 +1,4 @@
-import {observable, action, co} from "mobx";
-// import myFetch from "../../utils/http";
+import {observable, action} from "mobx";
 
 class MainStore {
 
@@ -26,7 +25,7 @@ class MainStore {
 
   @action showUserInfo =(bool=true)=> {
     this.isShowUserInfo = bool;
-  }
+  };
 
   @action showMobileSearch = ()=> {
     this.isShowMobileSearch = !this.isShowMobileSearch;

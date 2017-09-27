@@ -5,11 +5,12 @@
 const articleModel = require("../schemas").articleModel;
 const saveCtrl = require("./controller");
 const URLS = require("./urls");
+const middlewares = require("./middlewares");
 
 module.exports = function (app) {
 
   /* 获创建新文章*/
-  app.post(URLS.ARTICLE_CREATE, (req, res)=>{
+  app.post(URLS.ARTICLE_CREATE, middlewares.check_api_token, (req, res)=>{
     saveCtrl.handleSave(req.body, articleModel, (err, entity)=>{
       res.send({
         result: err || entity,
@@ -33,7 +34,6 @@ module.exports = function (app) {
         });
       });
   });
-
 
   /* 获取 某篇文章的 详细信息*/
   app.get(URLS.ARTICLE_GET_DETAIL, (req, res)=>{

@@ -2,15 +2,17 @@
   登录、注册
 */
 
+const jwt = require('jsonwebtoken');
 const userModel = require("../schemas").userModel;
 const saveCtrl = require("./controller");
 const URLS = require("./urls");
 
 module.exports = function(app) {
 
-  //注册
+  /** 注册 */
   app.post(URLS.SIGN_UP, (req, res, next) => {
     userModel.findOne({"username": req.body.username}, (err, user)=>{
+      if (err) throw err;
       if(user){
         res.send({
           result: null,
@@ -31,9 +33,10 @@ module.exports = function(app) {
     });
   });
 
-  //登录
+  /** 登录 */
   app.post(URLS.LOGIN, (req, res) => {
     userModel.findOne({"username": req.body.username}, (err, user) => {
+      if (err) throw err;
       if (!user){
         res.send({
           result: null,
@@ -42,11 +45,23 @@ module.exports = function(app) {
         });
       }else{
         let isPasswordCorrected = req.body.password===user.toObject().password;
-        res.send({
-          result: isPasswordCorrected ? user : null,
-          msg: isPasswordCorrected ? 'success login': 'password error !',
-          status: isPasswordCorrected ? 0 : -1
-        });
+        if(!isPasswordCorrected){
+          res.send({
+            result: null,
+            msg: 'password error !',
+            status: -1
+          });
+        }else{
+          let token = jwt.sign(user, app.get("jwtTokenSecret"), {
+            expiresIn: app.get("expiresIn")
+          });
+          res.send({
+            result: user,
+            msg: 'success login',
+            status: 0,
+            token: token
+          });
+        }
       }
     });
   });

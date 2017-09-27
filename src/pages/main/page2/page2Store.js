@@ -1,5 +1,8 @@
 import {observable, action, computed} from "mobx";
 import myFetch from "../../../utils/http";
+
+import http from "../../../utils/aaa";
+
 import SimpleMDE  from 'simplemde';
 import editorConfig from "../../../utils/editorConfig";
 import {toast} from "../../../components/toast";
@@ -47,10 +50,20 @@ class Page2Store {
       author: ""
     };
 
-    myFetch(`/article/create`, "post", obj)
+    // myFetch(`/article/create`, "post", obj)
+    //   .then( json => {
+    //     this.initialArticle();
+    //     toast.success(json.msg);
+    //   });
+
+    http.post(`/article/create`, obj, true)
       .then( json => {
-        this.initialArticle();
-        toast.success(json.msg);
+        if(json.status === -1){
+          toast.error(json.msg);
+        }else{
+          this.initialArticle();
+          toast.success(json.msg);
+        }
       });
   };
 

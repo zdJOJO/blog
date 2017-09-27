@@ -16,6 +16,12 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//设置密钥
+app.set('jwtTokenSecret', 'A_LITTLE_DIFFICULT');
+
+//设置 token 过期时间
+app.set("expiresIn", "30d" );
+
 //数据库地址
 const mongodbUrl = "mongodb://127.0.0.1:27017";  
 

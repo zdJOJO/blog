@@ -2,13 +2,10 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
-
 const routes = require("./routes");
-
 const app = express();
 
-// 设定port变量，意为访问端口
+// 设定port变量，为访问端口
 app.set("port", process.env.PORT || 80);
 app.set("port", 80);
 app.use(bodyParser.json({limit: "10mb"}));  //这里指定参数使用 json 格式
@@ -38,6 +35,7 @@ mongoose.connect(mongodbUrl, {
   // 直接访问根目录　
   app.use(express.static(__dirname + "/static")); 
 
+  //路由 api 
   routes(app);
 
   //配置任何请求都转到index.html，而index.html会根据React-Router规则去匹配任何一个route

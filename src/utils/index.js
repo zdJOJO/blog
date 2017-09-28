@@ -23,7 +23,6 @@ class Cookie {
       try{
         return JSON.parse(value[2]);
       }catch(e) {
-        console.log(e);
         return value[2] ;
       }
     }else {

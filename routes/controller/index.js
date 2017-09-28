@@ -4,11 +4,14 @@
 */
 
 module.exports = { 
-  handleSave: (body, model, callback) => {
+  handleSave: (req, model, callback) => {
     let obj = {};
-    Object.keys(body).forEach( element => {
-      obj[element] = body[element] || null;
+    Object.keys(req.body).forEach( element => {
+      obj[element] = req.body[element] || null;
     });
+    if(req.user){
+      obj["author"] = req.user._id;
+    }
     let entity = new model(obj);
     entity.save( err => callback(err, entity) );
   }

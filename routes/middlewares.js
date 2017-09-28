@@ -14,7 +14,7 @@ module.exports = {
     // 解析 token
     if (token) {
       // 确认token
-      jwt.verify(token, app.get("jwtTokenSecret"), function(err, decoded) {
+      jwt.verify(token, "A_LITTLE_DIFFICULT", function(err, decoded) {
         if (err) {
           return res.status(401).send({
             result: null,
@@ -23,8 +23,8 @@ module.exports = {
           });
         } else {
           // 如果没问题就把解码后的信息保存到请求中，供后面的路由使用
-          req.api_user = decoded;
-          console.dir(req.api_user);
+          req.user = decoded;
+          console.dir(req.user);
           next();
         }
       });
@@ -37,5 +37,5 @@ module.exports = {
       });
     }
   }
-    
+
 };

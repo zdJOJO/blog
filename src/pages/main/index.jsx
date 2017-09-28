@@ -52,7 +52,7 @@ const Header = observer(() =>
       isMobile={myMainStore.isMobile}
       isShowMobileSearch={myMainStore.isShowMobileSearch}
     />
-    <UserSlider isShowUserInfo={myMainStore.isShowUserInfo} userInfo={myCookie.getCookie("userInfo")}/>
+    <UserSlider isShowUserInfo={myMainStore.isShowUserInfo} userInfo={myCookie.getCookie("userInfo") || {} }/>
     {myMainStore.isShowUserInfo && <div className="mask" onClick={()=>{myMainStore.showUserInfo(false)}}/>}
   </div>
 );

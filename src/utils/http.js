@@ -1,4 +1,5 @@
 import {toast} from "../components/toast";
+import {myCookie} from './';
 
 const methods = ["get", "post", "put", "delete"]; 
 const pulicPath = "/api";
@@ -32,15 +33,16 @@ class ClientHttp {
     methods.forEach( method => {
       this[method] = (url, _body, _customError=false) => new Promise((resolve, reject)=>{
         this.options = {
-          method: method,
-          credentials: "include"  //带上cookie
+          method: method
+          // credentials: "include"  //带上cookie
         };
         if(method !== "get"){
           this.options = {
             ...this.options,
             body: JSON.stringify(_body),
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "x-access-token": myCookie.getCookie("token") || ""
             }
           };
         }

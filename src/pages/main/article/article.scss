@@ -1,7 +1,12 @@
 
 
 .articleList{
+
   font-size: 16px;
+  height: 87vh;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 1vh 3vw;
 
   .articleItem{
 
@@ -17,9 +22,19 @@
 }
 
 .articleDetail{
+  margin: 10px auto;
+  height: 84vh;
+  width: 95vh;
+  font-size: 16px;
+  line-height: 2;
+
+  h1{
+    padding: 0 3vw
+  }
+
   pre{
     overflow-x: scroll;
-    font-size: 15px;
+    font-size: 16px;
     background: #2d2d2d;
     code{
       color: #cccccc;
@@ -36,6 +51,7 @@
   }
 
   .articleDetail{
+    width: 92vw;
     pre{
       font-size: 13px !important;
     }

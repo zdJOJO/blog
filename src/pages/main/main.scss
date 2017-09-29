@@ -63,7 +63,6 @@ main{
   color: #f5f8fa !important;
 }
 
-
 .mask{
   position: absolute;
   top: 0;
@@ -77,10 +76,10 @@ main{
 
 .userSlider{
   position: fixed;
-  width: 220px;
+  width: 290px;
   height: 100%;
   top: 0;
-  right: -220px;
+  right: -290px;
   background: #394b59;
   transition: all 0.5s ease;
   z-index: 25;

@@ -22,6 +22,14 @@ app.set("expiresIn", "30d" );
 //数据库地址
 const mongodbUrl = "mongodb://127.0.0.1:27017";  
 
+/**
+ * 解决冲突: Use native promises
+ * DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, 
+ * plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+ * 
+ * 可以用原生的 ES6 的Promise 也可以用 bluebird
+ * */ 
+mongoose.Promise = global.Promise;
 mongoose.connect(mongodbUrl, {
   useMongoClient: true
 }, (err, db)=>{

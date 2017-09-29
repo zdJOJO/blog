@@ -38,11 +38,11 @@ const links = [
 
 const showStyle = {
   transition: "all 0.5s ease",
-  right: "220px"
+  right: "290px"
 };
 const Header = observer(() => 
   <div>
-    <NavBar 
+    <NavBar
       style={myMainStore.isShowUserInfo ? showStyle : {right:　0, transition: "all 0.5s ease"}}
       links={links}
       isChooseTheme={myMainStore.isChooseTheme}

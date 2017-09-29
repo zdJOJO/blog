@@ -3,7 +3,6 @@
 */
 
 // const studentRoute = require("./student"); 
-const URLS = require("./urls");
 const loginRouter = require("./sign");
 const articleRouter = require("./article");
 

@@ -16,8 +16,8 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, "../static/pages"),
-    publicPath: "/pages/",  // publicPath：这个东西就是我们的服务器端的目录结构，会按这个目录加载js，css
+    path: path.resolve(__dirname, "../dist/js"),
+    publicPath: "/js/",  // publicPath：访问时文件的目录
     filename: "[name].[hash:8].bundle.js",
     chunkFilename: "[name].[chunkhash:5].chunk.js"  // 按需加载
   },
@@ -91,6 +91,14 @@ module.exports = {
       manifest: require("./manifest.json")
     }),
 
+    new HtmlWebpackPlugin({
+      title: "LEI 了,那个男人他LEI了",
+      inject: true,
+      filename: path.resolve(__dirname, "../dist/index.html"),
+      template: "./src/html-tpl/tpl.html",
+      chunkSortMode: "dependency"
+    }),
+
     new webpack.optimize.UglifyJsPlugin({
       beautify: false,  // 最紧凑的输出
       comments: false,        //去掉注释
@@ -103,11 +111,6 @@ module.exports = {
       except: ["$super", "$", "exports", "require"]    //排除关键字
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-
-    new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, "../static/index.html"),
-      template: "./src/html-tpl/tpl.html"
-    }),
 
     new ExtractTextPlugin({ 
       filename: "[name].[contenthash].css", 

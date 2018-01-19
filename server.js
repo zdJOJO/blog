@@ -41,14 +41,15 @@ mongoose.connect(mongodbUrl, {
   }
 
   // 直接访问根目录　
-  app.use(express.static(__dirname + "/static")); 
+  app.use( express.static(__dirname + '/dist'));
+  app.use( express.static(__dirname + '/static'));
 
   //路由 api 
   routes(app);
 
   //配置任何请求都转到index.html，而index.html会根据React-Router规则去匹配任何一个route
   app.get("*", (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "./static/index.html"));
+    res.sendFile(path.resolve(__dirname, "./dist/index.html"));
   });
 
   app.listen(app.get("port"), ()=>{

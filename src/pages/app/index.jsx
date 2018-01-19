@@ -5,7 +5,7 @@ import "../../style.scss";
 
 import { createComponent } from "../../routes/routes";
 import Home from "bundle-loader?lazy&name=home!../home";
-import Main from "bundle-loader?lazy&name=main!../main";
+import Main from "bundle-loader?lazy&name=mains!../main";
 
 const App = () => (
   <div>

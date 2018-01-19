@@ -20,6 +20,8 @@ module.exports = {
     path: path.resolve(__dirname, "../static/js"),  //文件的输出路径
     filename: "[name]_[chunkhash].js",
     library: "[name]_[chunkhash]"
+    // filename: "[name].js",
+    // library: "[name]"
   },
   plugins: [
 

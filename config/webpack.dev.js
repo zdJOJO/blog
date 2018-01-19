@@ -14,8 +14,8 @@ module.exports = {
   ],
 
   output: {
-    path: path.resolve(__dirname, "../static/pages"),
-    publicPath: "/static/pages/",
+    path: path.resolve(__dirname, "../dist/js"),
+    publicPath: "/dist/js/",
     filename: "bundle.js",
     chunkFilename: "[name].[chunkhash:5].chunk.js"  // 按需加载
   },

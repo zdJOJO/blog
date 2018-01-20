@@ -26,7 +26,7 @@ class ImgItem extends Component{
         style={{
           ...img.style,
           opacity: (this.state.loaded && store.imgIndex === index) ? 1 : 0 ,
-          background: `url(${this.state.imgUrl}) no-repeat`
+          background: `url(${this.state.imgUrl})`
         }}
       />
     );

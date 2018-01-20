@@ -9,6 +9,18 @@ if (process.env.NODE_ENV !== "production") {
   throw new Error(' Production builds must have NODE_ENV=production ');
 }
 
+
+const vendors =[
+  "react", 
+  "react-dom", 
+  "react-router", 
+  "react-router-dom",
+  "mobx",
+  "mobx-react",
+  "@blueprintjs/core",
+  "simplemde"
+];
+
 module.exports = {
 
   entry: {
@@ -92,11 +104,10 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      title: "LEI 了,那个男人他LEI了",
       inject: true,
       filename: path.resolve(__dirname, "../dist/index.html"),
       template: "./src/html-tpl/tpl.html",
-      chunkSortMode: "dependency"
+      chunks: ["vendor", "app"]  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
     }),
 
     new webpack.optimize.UglifyJsPlugin({

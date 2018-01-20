@@ -9,18 +9,6 @@ if (process.env.NODE_ENV !== "production") {
   throw new Error(' Production builds must have NODE_ENV=production ');
 }
 
-
-const vendors =[
-  "react", 
-  "react-dom", 
-  "react-router", 
-  "react-router-dom",
-  "mobx",
-  "mobx-react",
-  "@blueprintjs/core",
-  "simplemde"
-];
-
 module.exports = {
 
   entry: {

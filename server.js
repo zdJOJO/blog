@@ -7,7 +7,7 @@ const app = express();
 
 // 设定port变量，为访问端口
 app.set("port", process.env.PORT || 80);
-app.set("port", 80);
+//app.set("port", 80);
 app.use(bodyParser.json({limit: "10mb"}));  //这里指定参数使用 json 格式
 app.use(bodyParser.urlencoded({
   extended: true

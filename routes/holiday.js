@@ -28,11 +28,12 @@ router.get(URLS.GET_TOP_HOLIDAY, (req, res)=>{
 router.post(URLS.HOLIDAY_CHOOSE, (req, res, next) => {
   holidayModel.findOne({"name": req.body.name}, (err, holiday)=>{
     if(holiday){
-      let count = holiday.count + 1;
+      let count = req.body.isCancel ? holiday.count - 1 : holiday.count + 1;
+      let msg = req.body.isCancel ? "取消成功" : "投票成功";
       holidayModel.update({"name": holiday.name},{"count": count}, (err, doc)=>{
         res.send({
           result: err || { time: new Date().getTime(), count: doc.count },
-          msg: err || "投票成功",
+          msg: err || msg,
           status: err ? -1 : 0
         });
       });

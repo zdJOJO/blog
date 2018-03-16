@@ -137,19 +137,27 @@ class HolidayStore {
       });
   }
 
-  @action handleChoose=(holiday, callback)=>{
-    let lastVodeTime = parseInt(window.localStorage.getItem("lastVodeTime"));
-    let now = new Date().getTime();
-    if( (now - lastVodeTime) < 24 * 60 * 60 *1000){
-      toast.error("请过段时间再次投票!");
-      return;
+  @action handleChoose=(holiday, isCancel,callback)=>{
+    
+    if(isCancel){
+      window.localStorage.setItem("lastVodeTime", 0);
+      window.localStorage.setItem("cardName", "");
+    }else{
+      let now = new Date().getTime();
+      let lastVodeTime = parseInt(window.localStorage.getItem("lastVodeTime"));
+      if( (now - lastVodeTime) < 24 * 60 * 60 *1000){
+        toast.error("请过段时间再次投票!");
+        return;
+      }
     }
-    http.post("/holiday/choose", holiday)
+    http.post("/holiday/choose", {...holiday, isCancel: isCancel})
       .then( res => {
-        toast.success("投票成功");
+        toast.success( isCancel ? "已取消投票" : "投票成功");
         this.getTop(3);
-        window.localStorage.setItem("lastVodeTime", res.result.time);
-        window.localStorage.setItem("cardName", holiday.name);
+        if(!isCancel){
+          window.localStorage.setItem("lastVodeTime", res.result.time);
+          window.localStorage.setItem("cardName", holiday.name);
+        }
         callback();
       });
   }

@@ -138,7 +138,6 @@ class HolidayStore {
   }
 
   @action handleChoose=(holiday, isCancel,callback)=>{
-    
     if(isCancel){
       window.localStorage.setItem("lastVodeTime", 0);
       window.localStorage.setItem("cardName", "");

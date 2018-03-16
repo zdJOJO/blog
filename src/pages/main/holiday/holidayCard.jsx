@@ -11,8 +11,14 @@ class HolidayCard extends Component{
 
   componentWillMount(){
     const { card } = this.props;
-    let choose = card.name===window.localStorage.getItem("cardName");
-    this.setState({choose});
+    let now = new Date().getTime();
+    let lastVodeTime = parseInt(window.localStorage.getItem("lastVodeTime"));
+    if( (now - lastVodeTime) < 24 * 60 * 60 *1000){
+      let choose = card.name===window.localStorage.getItem("cardName");
+      this.setState({choose});
+    }else{
+      this.setState({choose: false});
+    }
   }
 
   handleChoose=()=>{

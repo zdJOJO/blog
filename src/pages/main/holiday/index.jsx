@@ -25,7 +25,11 @@ class Holiday extends Component{
             </div>
           ))}
         </div>
-        <h2>富阳新沙岛茗悦农家乐一日游团购套餐</h2>
+        <h2>
+          <a target="_blank" href="https://hotels.ctrip.com/hotel/1120236.html">
+            富阳新沙岛茗悦农家乐一日游团购套餐(点击查看详情)
+          </a>
+        </h2>
         <p>
         免费项目：【注、自己组织、免费提供场地、道具】
         1：庭院茶座    2：沙滩排球     3：拔河     4:足桌球    5：抓螃蟹

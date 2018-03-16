@@ -33,6 +33,7 @@ class HolidayCard extends Component{
         interactive
       >
         <h5><a href="javascript:void(0)">{card.name}</a></h5>
+        <h3><a href="javascript:void(0)">{card.price}</a></h3>
         <p>{card.detail}</p>
         <Button 
           text={ this.state.choose ? "已选择" : "请选择" } 

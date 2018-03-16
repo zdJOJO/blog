@@ -50,6 +50,7 @@ router.post(URLS.HOLIDAY_CHOOSE, (req, res, next) => {
       console.log("doc is :");
       console.log(doc);
     }
+    doc["time"] = new Date().getTime();
     res.send({
       result: err || doc ,
       msg: err || "投票成功!",

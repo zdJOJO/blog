@@ -13,6 +13,8 @@ module.exports = {
       obj["author"] = req.user._id;
     }
     let entity = new model(obj);
-    entity.save( err => callback(err, entity) );
+    entity.save( (err, doc) => {
+      callback(err, doc);
+    });
   }
 };

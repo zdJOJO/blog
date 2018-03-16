@@ -34,6 +34,13 @@ const userSchema = Schema({
   weibo: String
 });
 
+const holidaySchema = Schema({
+  id: {type: String, unique: true},
+  name: String,
+  detail: String,
+  count: Number
+});
+
 const getModel =(collectionName, schema) => {
   return mongoose.model(collectionName, schema);
 };
@@ -41,9 +48,11 @@ const getModel =(collectionName, schema) => {
 const studentModel = getModel("student", studentSchema);
 const articleModel = getModel("article", articleSchema);
 const userModel = getModel("user", userSchema);
+const holidayModel = getModel("holiday", holidaySchema);
 
 module.exports = {
   studentModel: studentModel,
   articleModel: articleModel,
-  userModel: userModel
+  userModel: userModel,
+  holidayModel: holidayModel
 };

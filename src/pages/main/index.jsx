@@ -4,6 +4,7 @@ import {Switch, Route } from "react-router-dom";
 
 import { createComponent } from "../../routes/routes";
 
+import Holiday from "bundle-loader?lazy&name=holiday!./holiday";
 import Page1 from "bundle-loader?lazy&name=page1!./page1";
 import Page2 from "bundle-loader?lazy&name=page2!./page2";
 import Article from "bundle-loader?lazy&name=article!./article";
@@ -29,7 +30,7 @@ const links = [
   { href: "/main/articles", icon: "manual", label: "Article" },
   { href: "/main/page2", icon: "highlight", label: "Create" },
 
-  { href: "/main/articles", icon: "manual", label: "Article" },
+  { href: "/main/holiday", icon: "thumbs-up", label: "假期投票" },
   { href: "/main/articles", icon: "manual", label: "Article" },
   { href: "/main/articles", icon: "manual", label: "Article" },
   { href: "/main/articles", icon: "manual", label: "Article" }
@@ -60,6 +61,7 @@ const Header = observer(() =>
 const MainContent = () => (
   <main>
     <Switch>
+      <Route path="/main/holiday" component={createComponent(Holiday)} />
       <Route path="/main/page1" component={createComponent(Page1)} />
       <Route path="/main/page2" component={createComponent(Page2)} />
       <Route path="/main/articles" component={createComponent(Article)} />

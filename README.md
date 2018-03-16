@@ -37,7 +37,7 @@ a simple demon of react-router4
 
 # 
   1.  启动mongodb
-      ` mongod --dbpath d:\local-repository\mongodb\data --logpath d:\local-repository\mongodb\log\mongodb.log --logappend `
+      ` mongod --dbpath "d:\local-repository\mongodb\data" --logpath "d:\local-repository\mongodb\log\mongodb.log" --logappend `
         或者
      `mongod --dbpath /home/web/mongodb/data/db/ --logpath /home/web/mongodb/log/mongodb.log --logappend`
      

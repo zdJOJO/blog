@@ -5,6 +5,7 @@
 // const studentRoute = require("./student"); 
 const loginRouter = require("./sign");
 const articleRouter = require("./article");
+const holidayRouter = require("./holiday");
 
 module.exports = function (app){
 
@@ -16,5 +17,8 @@ module.exports = function (app){
 
   //学生
   // studentRoute(app);
+
+  //假期
+  app.use("/", holidayRouter);
 
 };

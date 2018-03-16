@@ -1,0 +1,31 @@
+
+.holiday{
+  padding: 0 20px;
+
+  .progress{
+    width: 400px;
+    
+    .pt-progress-bar{
+      height: 20px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  .packages{
+    display: flex;
+    flex-direction: row;
+
+    .column { 
+      display: flex; 
+      flex-flow: column wrap; 
+      width: calc(100%/3);
+    }
+
+    .package{
+      margin: 15px;
+      p{
+        line-height: 25px;
+      }
+    }
+  }
+}

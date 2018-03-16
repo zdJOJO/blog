@@ -20,7 +20,11 @@ module.exports = (function Urls(PUBLIC) {
     ARTICLE_CREATE: `${this.PUBLIC}/article/create`,
     ARTICLE_UPDATE: `${this.PUBLIC}/article/update`,
     ARTICLE_GET_LIST: `${this.PUBLIC}/article/list`,
-    ARTICLE_GET_DETAIL: `${this.PUBLIC}/article/:id`
+    ARTICLE_GET_DETAIL: `${this.PUBLIC}/article/:id`,
+
+    /** 假期 */
+    HOLIDAY_CHOOSE: `${this.PUBLIC}/holiday/choose`,
+    GET_TOP_HOLIDAY: `${this.PUBLIC}/holiday/topList`
 
   });
 

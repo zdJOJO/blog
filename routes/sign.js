@@ -23,7 +23,7 @@ router.post(URLS.SIGN_UP, (req, res, next) => {
     }
   });
 }, (req, res) => {
-  saveCtrl.handleSave(req.body, userModel, (err, entity) => {
+  saveCtrl.handleSave(req, userModel, (err, entity) => {
     res.send({
       result: err || entity,
       msg: err || "registered successfully",
